@@ -1,0 +1,285 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+ul {
+  list-style: none; }
+
+.nav {
+  width: 100%;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
+.nav-header-text {
+  font-size: 24px; }
+
+.nav-dark {
+  background: #222;
+  color: #fee; }
+
+.nav-link {
+  font-size: 22px;
+  text-decoration: none; }
+
+.nav-link-dark {
+  color: #3af; }
+  .nav-link-dark:hover {
+    color: #4bf; }
+
+.nav-btn {
+  display: block;
+  min-width: 80px;
+  padding: 5px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer; }
+
+.nav-btn-dark {
+  color: white;
+  background: #3a4; }
+  .nav-btn-dark:hover {
+    background: #5c6; }
+
+.nav-link-group {
+  display: flex; }
+
+.like-heart-button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 25px;
+  cursor: pointer; }
+  .like-heart-button:hover {
+    color: red; }
+
+.footer {
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center; }
+
+.footer-dark {
+  background: #222;
+  color: #fee; }
+
+.page-body {
+  padding-top: 30px;
+  height: 100%;
+  min-height: 600px;
+  font-size: 28px;
+  padding-bottom: 100px;
+  position: relative; }
+
+.body-dark {
+  background: #333;
+  color: #333; }
+
+.card {
+  width: 400px;
+  max-width: 100%;
+  min-height: 200px;
+  padding: 15px;
+  margin: 0px auto 10px auto; }
+
+.card-wide {
+  width: 90%;
+  min-height: 100px;
+  margin: 0px auto 10px auto;
+  padding: 10px 15px 10px 15px; }
+
+.card-dark {
+  background: #222;
+  color: #fee; }
+
+.input-field {
+  border-radius: 4px;
+  font-size: 20px;
+  font-family: "Open sans"; }
+
+.text-input {
+  height: 40px;
+  max-width: 400px;
+  padding-left: 8px;
+  width: 100%;
+  border: 1px solid black; }
+  .text-input:focus {
+    box-shadow: 0px 0px 20px lightblue; }
+
+.text-input-invalid {
+  height: 30px;
+  max-width: 400px;
+  padding-left: 8px;
+  width: 100%;
+  border: 1px solid red;
+  box-shadow: 0px 0px 20px red; }
+
+.text-area-input {
+  height: 400px;
+  width: 600px;
+  max-width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  width: 100%;
+  border: 1px solid black;
+  resize: none; }
+  .text-area-input:focus {
+    box-shadow: 0px 0px 20px lightblue; }
+
+.text-area-input-invalid {
+  height: 400px;
+  width: 600px;
+  max-width: 100%;
+  padding-left: 8px;
+  margin-top: 10px;
+  width: 100%;
+  box-shadow: 0px 0px 20px red;
+  resize: none; }
+
+.error-text {
+  color: red; }
+
+.error-box {
+  width: 100%;
+  padding: 30px;
+  background: #e66464;
+  text-align: center;
+  color: #fee; }
+
+.text-dark {
+  font-size: 24px;
+  color: #fee; }
+
+.detail-text-dark {
+  font-size: 22px;
+  color: #999; }
+
+.btn {
+  min-width: 80px;
+  border: 0px;
+  padding: 8px;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  font-size: 24px;
+  cursor: pointer; }
+
+.btn-blue {
+  background: #47f;
+  color: white; }
+  .btn-blue:hover {
+    background: #48f; }
+
+.btn-green {
+  background: #3a4;
+  color: white; }
+  .btn-green:hover {
+    background: #5c6; }
+
+.btn-gray {
+  background: #999;
+  color: white; }
+  .btn-gray:hover {
+    background: #aaa; }
+
+.btn-red {
+  background: #c33;
+  color: white; }
+  .btn-red:hover {
+    background: #e22; }
+
+.x-btn-dark {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #c33;
+  color: white;
+  border: 0;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-weight: bold; }
+  .x-btn-dark:hover {
+    background: #e22; }
+
+.header-text-dark {
+  text-align: center;
+  margin: 0 auto 30px auto;
+  color: #fee; }
+
+.link {
+  text-decoration: none; }
+
+.link-dark {
+  color: #3af; }
+  .link-dark:hover {
+    color: #4bf; }
+
+.flex {
+  display: flex; }
+
+.flex-center {
+  justify-content: center;
+  align-items: center; }
+
+.flex-align-center {
+  align-items: center; }
+
+.flex-between {
+  justify-content: space-between; }
+
+.flex-around {
+  justify-content: space-around; }
+
+.flex-column {
+  flex-direction: column; }
+
+.like-box {
+  width: 90px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; }
+
+.forum-top-links {
+  width: 90%;
+  margin: 0px auto 10px auto;
+  display: flex;
+  justify-content: space-between; }
+
+.forum-card-text-and-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; }
+
+.new-thread-form-holder {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); }
+
+.new-thread-form {
+  margin: 30px auto 0px auto;
+  padding: 30px;
+  width: 800px;
+  max-width: 100%;
+  border: 1px solid #3af;
+  position: relative; }
+
+.bg-dark {
+  background: #333; }
+
+.form-label {
+  display: block;
+  margin-top: 5px; }
+
+.reply-card-master {
+  border: 1px solid lightblue; }
