@@ -42,13 +42,22 @@ class Navbar extends Component {
     );
 
     const guestLinks = (
-      <Link
-        to="/login"
-        className={navClasses.navBtn}
-        style={{ marginRight: "30px" }}
-      >
-        Login
-      </Link>
+      <React.Fragment>
+        <Link
+          to="/login"
+          className={navClasses.navBtn}
+          style={{ marginRight: "10px" }}
+        >
+          Login
+        </Link>
+        <Link
+          to="/register"
+          className={navClasses.navBtn}
+          style={{ marginRight: "30px" }}
+        >
+          Register
+        </Link>
+      </React.Fragment>
     );
 
     return (

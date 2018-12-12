@@ -46,6 +46,7 @@ class Thread extends Component {
 
   componentDidMount() {
     // this.props.clearErrors();
+
     document.addEventListener("keydown", this.escFunction, false);
 
     this.props.getClasses({
@@ -102,6 +103,7 @@ class Thread extends Component {
     this.setState({ editThreadFormActive: true });
   };
 
+  // Like thread
   onLikeClick = () => {
     this.props.likeThread(
       this.props.match.params.forumSection,
@@ -333,8 +335,20 @@ class Thread extends Component {
               >
                 Reply
               </button>
+              {/* LIKE BUTTON */}
               <button className={classes.btnBlue} onClick={this.onLikeClick}>
-                <i className="far fa-heart" />
+                {thread && thread.likes ? (
+                  thread.likes.filter(
+                    like => like._id === this.props.auth.user.id
+                  ).length > 0 ? (
+                    <i className="fa fa-heart" />
+                  ) : (
+                    <i className="far fa-heart" />
+                  )
+                ) : (
+                  <i className="far fa-heart" />
+                )}{" "}
+                {thread ? (thread.likes ? thread.likes.length : 0) : null}
               </button>
             </div>
           </div>

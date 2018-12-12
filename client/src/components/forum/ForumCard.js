@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 
@@ -46,12 +47,6 @@ class ForumCard extends Component {
                     <td>Likes: </td>
                     <td>{thread.likes.length}</td>
                   </tr>
-                  <tr>
-                    <td>
-                      <i className="far fa-heart" />
-                    </td>
-                    <td />
-                  </tr>
                 </tbody>
               </table>
             </div>
@@ -80,4 +75,11 @@ ForumCard.propTypes = {
   likes: PropTypes.number
 };
 
-export default ForumCard;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  {}
+)(ForumCard);

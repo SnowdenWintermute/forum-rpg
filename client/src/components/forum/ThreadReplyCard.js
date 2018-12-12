@@ -157,7 +157,10 @@ class ThreadReplyCard extends Component {
                     )}{" "}
                   </button>
                 )}
-                <small>Likes: {reply.likes.length}</small>
+                {/* Display likes if not orginal post */}
+                {!reply.replies ? (
+                  <small>Likes: {reply.likes.length}</small>
+                ) : null}
               </div>
               <div style={{ display: "flex" }}>
                 {!reply.replies && reply.user === auth.user.id ? (
