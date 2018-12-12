@@ -4,8 +4,11 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const threadIdGenerator = require("../../utils/threadIdGenerator");
 
-// Post model
+// Thread model
 const Thread = require("../../models/Thread");
+// Wallet model
+const Wallet = require("../../models/Wallet");
+
 
 // Validation
 const validateThreadInput = require("../../validation/thread");

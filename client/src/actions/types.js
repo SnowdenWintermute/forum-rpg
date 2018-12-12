@@ -16,3 +16,5 @@ export const LIKE_THREAD = "LIKE_THREAD";
 export const LIKE_REPLY = "LIKE_REPLY";
 export const DELETE_THREAD = "DELETE_THREAD";
 export const DELETE_REPLY = "DELETE_REPLY";
+
+export const GET_WALLET = "GET_WALLET";

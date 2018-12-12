@@ -5,7 +5,7 @@ const passport = require("passport");
 
 const users = require("./routes/api/users");
 const forum = require("./routes/api/forum");
-const profile = require("./routes/api/profile");
+const wallet = require("./routes/api/wallet");
 
 const app = express();
 
@@ -34,6 +34,7 @@ require("./config/passport")(passport);
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/forum", forum);
+app.use("/api/wallet", wallet);
 
 //the process.env is for heroku
 const port = process.env.PORT || 5000;

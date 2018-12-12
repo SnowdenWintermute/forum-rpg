@@ -18,8 +18,8 @@ class Dashboard extends Component {
               </Link>
             </li>
             <li>
-              <Link to="/forum" className="link link-dark">
-                Character
+              <Link to="/wallet" className="link link-dark">
+                Wallet
               </Link>
             </li>
             <li>
