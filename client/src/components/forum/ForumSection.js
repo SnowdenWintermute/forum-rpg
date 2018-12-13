@@ -52,20 +52,9 @@ class ForumSection extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.errors === "Unauthorized") {
-      return {
-        newThreadFormActive: false,
-        errors: nextProps.errors
-      };
-    }
-
-    if (nextProps.errors) {
-      window.scrollTo(0, 0);
-      return {
-        errors: nextProps.errors
-      };
-    }
-    return null;
+    return {
+      wallet: nextProps.wallet
+    };
   }
 
   onChange = e => {

@@ -94,14 +94,6 @@ class ThreadReplyCard extends Component {
     let card;
     let activeForm;
 
-    console.log(this.props.reply.likes);
-    console.log(this.props.auth.user.id);
-    console.log(
-      this.props.reply.likes.filter(
-        like => like._id === this.props.auth.user.id
-      ).length
-    );
-
     // Show the edit reply form if active
     if (this.state.editReplyFormActive) {
       activeForm = (

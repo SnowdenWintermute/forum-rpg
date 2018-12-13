@@ -18,3 +18,4 @@ export const DELETE_THREAD = "DELETE_THREAD";
 export const DELETE_REPLY = "DELETE_REPLY";
 
 export const GET_WALLET = "GET_WALLET";
+export const SET_WALLET_LOADING = "SET_WALLET_LOADING";

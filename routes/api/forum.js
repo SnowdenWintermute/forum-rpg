@@ -9,7 +9,6 @@ const Thread = require("../../models/Thread");
 // Wallet model
 const Wallet = require("../../models/Wallet");
 
-
 // Validation
 const validateThreadInput = require("../../validation/thread");
 const validateReplyInput = require("../../validation/reply");
@@ -87,6 +86,52 @@ router.post(
         .catch(err => res.status(404).json(err));
     };
     saveThread();
+
+    // Payout
+    Wallet.findOne({ user: req.user.id }).then(wallet => {
+      //   // Get all past transactions and sort for this type
+      //   if (wallet.transactions !== []) {
+      //     const newThreadPayouts = wallet.transactions.filter(
+      //       transaction => transaction.from === "Minted - New Thread"
+      //     );
+      //     // Find the most recent payout
+      //     recentPayout = newThreadPayouts => {
+      //       let result;
+      //       for (payout of newThreadPayouts) {
+      //         if (payout.date > result.date) result = payout;
+      //       }
+      //       return result;
+      //     };
+      //     // Check recent payout against current time and pay accordingly
+      //     if (recentPayout(newThreadPayouts) < Date.now()) {
+      //       wallet.transactions.unshift({
+      //         ammount: 25,
+      //         from: "Minted - New Thread",
+      //         to: req.user.name,
+      //         note: ""
+      //       });
+      //     }
+      //   } else {
+      //     // If no past transactions, payout
+      //     wallet.transactions.unshift({
+      //       ammount: 26,
+      //       from: "Minted - New Thread",
+      //       to: req.user.name,
+      //       note: "First transaction"
+      //     });
+      //   }
+
+      wallet.transactions.unshift({
+        amount: 50,
+        from: "Minted - New Thread",
+        to: req.user.name,
+        note: "Reward for posting new thread"
+      });
+
+      wallet.balance += 50;
+
+      wallet.save();
+    });
   }
 );
 

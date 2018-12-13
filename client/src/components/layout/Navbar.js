@@ -3,8 +3,14 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { getWallet } from "../../actions/walletActions";
+import forumcoin from "../../img/forumcoin.png";
 
 class Navbar extends Component {
+  componentDidMount() {
+    this.props.getWallet();
+  }
+
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
@@ -12,6 +18,7 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
+    const { wallet } = this.props;
     const navClasses = {
       nav: "nav nav-dark",
       navLink: "nav-link nav-link-dark",
@@ -19,10 +26,14 @@ class Navbar extends Component {
       navHeaderText: "nav-header-text"
     };
 
+    let balance;
+    wallet.wallet ? (balance = wallet.wallet.balance) : (balance = 0);
+
     const authLinks = (
       <React.Fragment>
         <span style={{ marginRight: "20px", fontSize: "22px" }}>
-          Welcome {user.name}
+          Welcome {user.name}{" "}
+          <img style={{ height: "20px" }} alt="$" src={forumcoin} /> {balance}
         </span>
         <Link
           to="/dashboard"
@@ -83,18 +94,27 @@ class Navbar extends Component {
       </nav>
     );
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.wallet !== this.props.wallet) {
+      console.log(prevProps.wallet);
+      // console.log(prevState.wallet);
+    }
+  }
 }
 
 Navbar.propTypes = {
   logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  auth: PropTypes.object.isRequired,
+  getWallet: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  wallet: state.wallet
 });
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, getWallet }
 )(Navbar);
