@@ -15,8 +15,8 @@ export const createWallet = () =>dispatch => {
     })
 }
 
-export const getWallet = () =>dispatch => {
-    axios.get('/api/wallet/:userId').then(res =>
+export const getWallet = (userId) =>dispatch => {
+    axios.get(`/api/wallet/${userId}`).then(res =>
         dispatch({
             type: GET_WALLET,
             payload: res.data

@@ -17,8 +17,8 @@ class Wallet extends Component {
           headers: "header-text-dark",
           links: "link link-dark"
         });
-
-        this.props.getWallet()
+        console.log(this.props.auth.user)
+        this.props.getWallet(this.props.auth.user.id)
       }
 
 
@@ -52,7 +52,8 @@ class Wallet extends Component {
 Wallet.propTypes = {
   auth: PropTypes.object.isRequired,
   getClasses: PropTypes.func.isRequired,
-  getWallet: PropTypes.func.isRequired
+  getWallet: PropTypes.func.isRequired,
+  wallet: PropTypes.object
 };
 
 const mapStateToProps = state => ({
