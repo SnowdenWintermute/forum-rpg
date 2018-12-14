@@ -7,9 +7,19 @@ import { getWallet } from "../../actions/walletActions";
 import forumcoin from "../../img/forumcoin.png";
 
 class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      wallet: {}
+    };
+  }
   componentDidMount() {
     this.props.getWallet();
+    this.setState({ wallet: this.props.wallet });
   }
+
+  // static getDerivedStateFromProps(nextProps, prevState) {
+  // }
 
   onLogoutClick(e) {
     e.preventDefault();
@@ -18,7 +28,7 @@ class Navbar extends Component {
 
   render() {
     const { isAuthenticated, user } = this.props.auth;
-    const { wallet } = this.props;
+    const { wallet } = this.state;
     const navClasses = {
       nav: "nav nav-dark",
       navLink: "nav-link nav-link-dark",
@@ -27,13 +37,21 @@ class Navbar extends Component {
     };
 
     let balance;
-    wallet.wallet ? (balance = wallet.wallet.balance) : (balance = 0);
+    wallet.wallet ? (balance = wallet.wallet.balance) : (balance = "...");
 
     const authLinks = (
       <React.Fragment>
         <span style={{ marginRight: "20px", fontSize: "22px" }}>
           Welcome {user.name}{" "}
-          <img style={{ height: "20px" }} alt="$" src={forumcoin} /> {balance}
+          <img style={{ height: "20px" }} alt="$" src={forumcoin} />
+          <Link
+            to="/wallet"
+            className={"text-dark"}
+            style={{ textDecoration: "none" }}
+          >
+            {" "}
+            {balance}
+          </Link>
         </span>
         <Link
           to="/dashboard"
@@ -96,10 +114,8 @@ class Navbar extends Component {
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.wallet !== this.props.wallet) {
-      console.log(prevProps.wallet);
-      // console.log(prevState.wallet);
-    }
+    if (this.props.wallet !== prevProps.wallet)
+      this.setState({ wallet: this.props.wallet });
   }
 }
 

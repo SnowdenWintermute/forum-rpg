@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
+import { getWallet, createWallet } from "../../actions/walletActions";
+
 import PropTypes from "prop-types";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getWallet();
+  }
+
   render() {
     const { user } = this.props.auth;
     return (
@@ -40,11 +46,17 @@ class Dashboard extends Component {
 }
 
 Dashboard.propTypes = {
+  getWallet: PropTypes.func.isRequired,
+  createWallet: PropTypes.func.isRequired,
   auth: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  auth: state.auth,
+  wallet: state.wallet
 });
 
-export default connect(mapStateToProps)(Dashboard);
+export default connect(
+  mapStateToProps,
+  { getWallet, createWallet }
+)(Dashboard);

@@ -142,7 +142,7 @@ ul {
   resize: none; }
 
 .error-text {
-  color: red; }
+  color: #e66464; }
 
 .error-box {
   width: 100%;
@@ -283,3 +283,6 @@ ul {
 
 .reply-card-master {
   border: 1px solid lightblue; }
+
+.td-padding {
+  padding-right: 100px; }

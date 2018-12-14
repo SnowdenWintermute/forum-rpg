@@ -164,7 +164,7 @@ ul {
   resize: none;
 }
 .error-text {
-  color: red;
+  color: map-get($colors, lightRed);
 }
 .error-box {
   width: 100%;
@@ -311,4 +311,7 @@ ul {
 }
 .reply-card-master {
   border: 1px solid lightblue;
+}
+.td-padding {
+  padding-right: 100px;
 }

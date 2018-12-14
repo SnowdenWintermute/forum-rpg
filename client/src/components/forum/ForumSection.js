@@ -6,9 +6,12 @@ import { Link, withRouter } from "react-router-dom";
 import { getClasses } from "../../actions/classActions";
 import { getForumThreads, createNewThread } from "../../actions/forumActions";
 import { clearErrors } from "../../actions/errorActions";
+import { getWallet } from "../../actions/walletActions";
 
 import ForumCard from "./ForumCard";
 import NewThreadForm from "./NewThreadForm";
+
+import loadingGif from "../../img/loading.gif";
 
 class ForumSection extends Component {
   constructor(props) {
@@ -51,11 +54,7 @@ class ForumSection extends Component {
     document.removeEventListener("keydown", this.escFunction, false);
   }
 
-  static getDerivedStateFromProps(nextProps, prevState) {
-    return {
-      wallet: nextProps.wallet
-    };
-  }
+  // static getDerivedStateFromProps(nextProps, prevState) {}
 
   onChange = e => {
     this.setState({
@@ -93,7 +92,16 @@ class ForumSection extends Component {
 
     // Load and display threads
     if (threads === null || loading) {
-      visibleThreads = <span>Loading threads...</span>;
+      visibleThreads = (
+        <div
+          style={{
+            width: "100vw",
+            textAlign: "center"
+          }}
+        >
+          <img src={loadingGif} alt="loading..." />
+        </div>
+      );
     } else {
       if (threads.length > 0) {
         visibleThreads = threads
@@ -178,7 +186,8 @@ ForumSection.propTypes = {
   getClasses: PropTypes.func.isRequired,
   getForumThreads: PropTypes.func.isRequired,
   createNewThread: PropTypes.func.isRequired,
-  clearErrors: PropTypes.func.isRequired
+  clearErrors: PropTypes.func.isRequired,
+  getWallet: PropTypes.func.isRequired
   // errors: PropTypes.object.isRequired
 };
 
@@ -190,5 +199,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getClasses, getForumThreads, createNewThread, clearErrors }
+  { getClasses, getForumThreads, createNewThread, clearErrors, getWallet }
 )(withRouter(ForumSection));

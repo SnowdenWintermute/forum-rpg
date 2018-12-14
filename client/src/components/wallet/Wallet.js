@@ -6,6 +6,8 @@ import Moment from "react-moment";
 import { getClasses } from "../../actions/classActions";
 import { getWallet, createWallet } from "../../actions/walletActions";
 
+import loadingGif from "../../img/loading.gif";
+
 class Wallet extends Component {
   //      COMPONENT FUNCTIONS
   //      COMPONENT FUNCTIONS
@@ -40,22 +42,39 @@ class Wallet extends Component {
       if (wallet.wallet.transactions) {
         for (let transaction of wallet.wallet.transactions) {
           transactions.push(
-            <div className="card-wide card-dark text-dark">
-              <table style={{ width: "100%" }}>
+            <div
+              className="card-wide card-dark text-dark"
+              key={transaction.date}
+            >
+              <table>
                 <tbody>
                   <tr>
-                    <td style={{ fontWeight: "bold" }}>Amount</td>
-                    <td style={{ fontWeight: "bold" }}>From</td>
-                    <td style={{ fontWeight: "bold" }}>To</td>
-                    <td style={{ fontWeight: "bold" }}>Date</td>
-                    <td style={{ fontWeight: "bold" }}>Note</td>
+                    <td className={"td-padding"} style={{ fontWeight: "bold" }}>
+                      Amount
+                    </td>
+                    <td className={"td-padding"} style={{ fontWeight: "bold" }}>
+                      From
+                    </td>
+                    <td className={"td-padding"} style={{ fontWeight: "bold" }}>
+                      To
+                    </td>
+                    <td className={"td-padding"} style={{ fontWeight: "bold" }}>
+                      Date
+                    </td>
+                    <td className={"td-padding"} style={{ fontWeight: "bold" }}>
+                      Note
+                    </td>
                   </tr>
                   <tr>
-                    <td>{transaction.amount}</td>
-                    <td>{transaction.from}</td>
-                    <td>{transaction.to}</td>
-                    <td>{transaction.date}</td>
-                    <td>{transaction.note}</td>
+                    <td className={"td-padding"}>{transaction.amount}</td>
+                    <td className={"td-padding"}>{transaction.from}</td>
+                    <td className={"td-padding"}>{transaction.to}</td>
+                    <td className={"td-padding"}>
+                      <Moment format="MM/DD/YYYY HH:mm:ss">
+                        {transaction.date}
+                      </Moment>
+                    </td>
+                    <td className={"td-padding"}>{transaction.note}</td>
                   </tr>
                 </tbody>
               </table>
@@ -70,18 +89,16 @@ class Wallet extends Component {
       //      COMPONENT RETURN
 
       <div className="page-body body-dark">
-        <h1 className={classes.headers}>Wallet</h1>
+        <h3 className={classes.headers}>Wallet</h3>
         <div className={classes.cards}>
           {this.props.wallet.wallet ? (
             <h3>Balance: {balance}</h3>
           ) : (
-            <button
-              onClick={this.onCreateWalletClick}
-              className="btn btn-green"
-              style={{ width: "100%", height: "100px" }}
-            >
-              Open new wallet
-            </button>
+            <img
+              src={loadingGif}
+              alt="loading..."
+              style={{ height: "100px" }}
+            />
           )}
         </div>
         <div>

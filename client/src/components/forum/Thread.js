@@ -15,6 +15,7 @@ import {
 } from "../../actions/forumActions";
 
 import { clearErrors } from "../../actions/errorActions";
+import { getWallet } from "../../actions/walletActions";
 
 import ThreadReplyCard from "./ThreadReplyCard";
 import NewReplyForm from "./NewReplyForm";
@@ -46,6 +47,7 @@ class Thread extends Component {
 
   componentDidMount() {
     // this.props.clearErrors();
+    this.props.getWallet();
 
     document.addEventListener("keydown", this.escFunction, false);
 
@@ -359,6 +361,13 @@ class Thread extends Component {
       </div>
     );
   }
+  componentDidUpdate(prevProps) {
+    // Get wallet
+    // console.log("ey");
+    // console.log(prevProps.wallet.balance);
+    // console.log(this.props.wallet.balance);
+    // if (prevProps.wallet !== this.props.wallet) this.props.getWallet();
+  }
 }
 
 Thread.propTypes = {
@@ -371,6 +380,7 @@ Thread.propTypes = {
   editReply: PropTypes.func.isRequired,
   clearThreadFromState: PropTypes.func.isRequired,
   clearErrors: PropTypes.func.isRequired,
+  getWallet: PropTypes.func.isRequired,
   thread: PropTypes.object,
   auth: PropTypes.object.isRequired
 };
@@ -379,7 +389,8 @@ const mapStateToProps = state => ({
   classes: state.classes,
   thread: state.threads.thread,
   auth: state.auth,
-  errors: state.errors
+  errors: state.errors,
+  wallet: state.wallet
 });
 
 export default connect(
@@ -393,6 +404,7 @@ export default connect(
     createNewReply,
     editReply,
     clearThreadFromState,
-    clearErrors
+    clearErrors,
+    getWallet
   }
 )(withRouter(Thread));

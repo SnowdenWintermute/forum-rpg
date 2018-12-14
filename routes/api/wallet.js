@@ -26,7 +26,7 @@ router.post(
           newWallet
             .save()
             .then(res.status(200).json(newWallet))
-            .catech(err => res.status(400).json(err));
+            .catch(err => res.status(400).json(err));
         }
       })
       .catch(err =>
