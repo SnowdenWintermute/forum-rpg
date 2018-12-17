@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 
+const path = require("path"); // part of node js, needed for production
+
 const users = require("./routes/api/users");
 const forum = require("./routes/api/forum");
 const wallet = require("./routes/api/wallet");
@@ -35,6 +37,16 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/forum", forum);
 app.use("/api/wallet", wallet);
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 //the process.env is for heroku
 const port = process.env.PORT || 5000;

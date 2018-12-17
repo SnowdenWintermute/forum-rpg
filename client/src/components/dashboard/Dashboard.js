@@ -28,7 +28,7 @@ class Dashboard extends Component {
                 Wallet
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/forum" className="link link-dark">
                 Profile
               </Link>
@@ -37,7 +37,7 @@ class Dashboard extends Component {
               <Link to="/forum" className="link link-dark">
                 Account
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

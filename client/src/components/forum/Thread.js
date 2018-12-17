@@ -21,6 +21,8 @@ import ThreadReplyCard from "./ThreadReplyCard";
 import NewReplyForm from "./NewReplyForm";
 import NewThreadForm from "./NewThreadForm";
 
+import loadingGif from "../../img/loading.gif";
+
 class Thread extends Component {
   constructor(props) {
     super(props);
@@ -79,8 +81,8 @@ class Thread extends Component {
 
   // If we get the unauthorized error, close the reply form to show it
   static getDerivedStateFromProps(nextProps, prevState) {
-    console.log(prevState.wallet);
-    console.log(nextProps.wallet);
+    // console.log(prevState.wallet);
+    // console.log(nextProps.wallet);
     if (nextProps.wallet !== prevState.wallet && !nextProps.wallet.loading) {
       console.log("updated wallet");
       if (nextProps.wallet.wallet) console.log(nextProps.wallet.wallet.balance);
@@ -203,7 +205,17 @@ class Thread extends Component {
 
     // Load and display thread and replies
     if (thread === undefined || thread === null || loading) {
-      visibleThreads = <span>Loading threads...</span>;
+      visibleThreads = (
+        <span
+          style={{
+            display: "block",
+            width: "100vw",
+            textAlign: "center"
+          }}
+        >
+          <img src={loadingGif} alt="loading..." />
+        </span>
+      );
       threadPath = <span>Loading thread...</span>;
     } else if (thread.likes) {
       // checking for likes because for some reason thread itself doesn't work
