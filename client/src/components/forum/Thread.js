@@ -30,6 +30,7 @@ class Thread extends Component {
       editReplyFormActive: false,
       title: "",
       text: "",
+      wallet: {},
       errors: {}
     };
   }
@@ -78,6 +79,18 @@ class Thread extends Component {
 
   // If we get the unauthorized error, close the reply form to show it
   static getDerivedStateFromProps(nextProps, prevState) {
+    console.log(prevState.wallet);
+    console.log(nextProps.wallet);
+    if (nextProps.wallet !== prevState.wallet && !nextProps.wallet.loading) {
+      console.log("updated wallet");
+      if (nextProps.wallet.wallet) console.log(nextProps.wallet.wallet.balance);
+      if (nextProps.wallet.wallet && prevState.wallet.wallet) {
+        if (prevState.wallet.wallet.balance < nextProps.wallet.wallet.balance) {
+          console.log("+money");
+        }
+        return { wallet: nextProps.wallet };
+      }
+    }
     if (nextProps.errors === "Unauthorized") {
       window.scrollTo(0, 0);
       return {
@@ -126,17 +139,24 @@ class Thread extends Component {
     const replyData = {
       text: this.state.text
     };
-    this.props.createNewReply(
-      this.props.match.params.forumSection,
-      this.props.match.params.threadId,
-      this.props.match.params.threadTitle,
-      replyData,
-      this.props.history
-    );
+    const createReplyAndUpdateWallet = new Promise((resolve, reject) => {
+      resolve(
+        this.props.createNewReply(
+          this.props.match.params.forumSection,
+          this.props.match.params.threadId,
+          this.props.match.params.threadTitle,
+          replyData,
+          this.props.history
+        )
+      );
+    });
+    createReplyAndUpdateWallet.then(this.props.getWallet());
+
     // Deactivate form if there is any text in submission
     if (this.state.text) {
       this.setState({ newReplyFormActive: false });
     }
+    this.props.getWallet();
   };
 
   onSubmitEditThread = e => {
@@ -362,11 +382,10 @@ class Thread extends Component {
     );
   }
   componentDidUpdate(prevProps) {
-    // Get wallet
-    // console.log("ey");
-    // console.log(prevProps.wallet.balance);
-    // console.log(this.props.wallet.balance);
-    // if (prevProps.wallet !== this.props.wallet) this.props.getWallet();
+    // console.log("state: ");
+    // console.log(this.state.wallet);
+    // console.log("props: ");
+    // console.log(prevProps.wallet);
   }
 }
 
