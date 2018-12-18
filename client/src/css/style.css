@@ -241,7 +241,6 @@ ul {
 
 .like-box {
   width: 90px;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between; }

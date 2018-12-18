@@ -133,7 +133,13 @@ class ThreadReplyCard extends Component {
               <br />
               <small>By {reply.author}</small>
             </div>
-            <div className={classes.detailText} style={{ height: "100%" }}>
+            <div
+              className={classes.detailText}
+              style={{
+                height: "100%",
+                width: "200px"
+              }}
+            >
               <div className="like-box">
                 {!this.props.reply.replies && (
                   <button
@@ -154,7 +160,12 @@ class ThreadReplyCard extends Component {
                   <small>Likes: {reply.likes.length}</small>
                 ) : null}
               </div>
-              <div style={{ display: "flex" }}>
+              <div
+                style={{
+                  width: "100%",
+                  display: "flex"
+                }}
+              >
                 {!reply.replies && reply.user === auth.user.id ? (
                   <button
                     onClick={this.onEditReplyClick}

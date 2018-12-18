@@ -22,7 +22,8 @@ class Login extends Component {
     }
     this.props.getClasses({
       card: "card-dark card",
-      page: "page-body body-dark"
+      page: "page-body body-dark",
+      headers: "header-text-dark"
     });
   }
 
@@ -59,6 +60,7 @@ class Login extends Component {
     return (
       <div className={this.props.classes.page}>
         <form onSubmit={this.onSubmit} noValidate>
+          <h1 className={this.props.classes.headers}>Login</h1>
           <div className={this.props.classes.card}>
             <InputGroup
               name="email"
