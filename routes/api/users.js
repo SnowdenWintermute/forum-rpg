@@ -13,6 +13,7 @@ const validateLoginInput = require("../../validation/login");
 // Load User model
 const User = require("../../models/User");
 const Wallet = require("../../models/Wallet");
+const Character = require("../../models/Character");
 
 // @route   POST api/users/register
 // @desc    Register user
@@ -46,7 +47,6 @@ router.post("/register", (req, res) => {
             .save()
             // Set up wallet
             .then(user => {
-              console.log(user);
               Wallet.findOne({ user: user.id })
                 .then(wallet => {
                   if (wallet) {
@@ -59,6 +59,23 @@ router.post("/register", (req, res) => {
                     });
                     newWallet
                       .save()
+                      // Create blank character sheet
+                      .then(user => {
+                        console.log(user);
+                        Character.findOne({ user: user.id }).then(character => {
+                          if (character) {
+                            return res.status(400).json({
+                              characterexists: "User already has a character"
+                            });
+                          } else {
+                            const newCharacter = new Character({
+                              user: user.id
+                            });
+                            newCharacter.save();
+                            console.log(user);
+                          }
+                        });
+                      })
                       .then(res.status(200).json(newWallet))
                       .catch(err => res.status(400).json(err));
                   }
