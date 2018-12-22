@@ -38,16 +38,10 @@ module.exports = generateStats = (subType, level, rarity) => {
     switch (type) {
       case "cloth" || "leather" || "mail" || "plate":
       case "1hSword" ||
-        "2hSword" ||
         "1hClub" ||
-        "2hClub" ||
         "1hAxe" ||
-        "2hAxe" ||
-        "polearm" ||
-        "bow" ||
-        "crossbow" ||
-        "pistol" ||
-        "rifle":
+        "pistol":
+      case "2hSword" || "2hClub" || "2hAxe" || "polearm" || "bow" || "crossbow" || "rifle":
       case "shield":
       default:
     }
