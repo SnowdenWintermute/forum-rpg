@@ -8,6 +8,7 @@ const path = require("path"); // part of node js, needed for production
 const users = require("./routes/api/users");
 const forum = require("./routes/api/forum");
 const wallet = require("./routes/api/wallet");
+const equipment = require("./routes/api/equipment");
 
 const app = express();
 
@@ -37,6 +38,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/forum", forum);
 app.use("/api/wallet", wallet);
+app.use("/api/equipment", equipment);
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === "production") {

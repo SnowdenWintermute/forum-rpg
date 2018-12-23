@@ -1,0 +1,20 @@
+// hp [suffix] of the fox, wolf, lion, bear, whale
+// str [suffix] of strength, might, power, giants, titans
+// dex [suffix] of dexterity, proficiancy, finesse, mastery, perfection
+// int [suffix] of intelligence, the mind, brilliance, sorcery, wizardry
+// magicDefense [suffix] of cover, shelter, shielding, dispersal, diffusion
+// armorPiercing [suffix] of piercing, stabbing, penetration, smashing, shattering
+
+// mp [prefix] bluejay's, cockatoo's owl's, kea's, raven's
+// bonusDamage [prefix] jagged, deadly, vicious, brutal, savage
+// bonusArmorClass [prefix] sturdy, strong, robust, reinforced, unyeilding
+// accuracy [prefix] steady, stable, sighted, guided, unwavering
+// magicAccuracy [prefix] cryptic, esoteric, magical, mystical, arcane
+      // [prefix] red, crimson, scarlet, garnet, ruby
+      // [prefix] warm, padded, insulated, heated, frostproof
+      // [prefix] blue, azure, lapis, cobalt, sapphire
+      // [prefix] waterproof, airtight, watertight, sealed, hermetic
+      // [prefix] yellow, amber, saffron, citrine, topaz
+      // [prefix] smooth, sleek, contoured, streamlined, frictionless
+      // [prefix] pure, sublime, hallowed, angelic, holy
+      // [prefix] dim, shadowy, dark, black, void
