@@ -14,8 +14,13 @@ module.exports = generateType = () => {
     "ring",
     "neck",
     "hand",
+    "hand",
+    "hand",
+    "hand",
+    "hand",
+    "hand",
     "ammunition"
   ];
-  const rn = getRandomInt(1, 14);
-  return types[rn - 1];
+  const rn = getRandomInt(0, types.length - 1);
+  return types[rn];
 };

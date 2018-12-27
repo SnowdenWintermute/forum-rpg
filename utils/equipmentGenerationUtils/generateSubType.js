@@ -2,22 +2,23 @@ getRandomInt = require("./getRandomInt");
 
 module.exports = generateSubType = type => {
   // Generate Sub-Type
+  let subTypes;
+  let subType;
   if (
     type === "head" ||
-    "body" ||
-    "legs" ||
-    "feet" ||
-    "shoulders" ||
-    "arms" ||
-    "hands" ||
-    "back"
+    type === "body" ||
+    type === "legs" ||
+    type === "feet" ||
+    type === "shoulders" ||
+    type === "arms" ||
+    type === "hands" ||
+    type === "back"
   ) {
-    let subTypes = ["cloth", "leather", "mail", "plate"];
-    const rn = getRandomInt(1, 4);
-    return subTypes[rn - 1];
-  }
-  if (type === "hand") {
-    let subTypes = [
+    subTypes = ["cloth", "leather", "mail", "plate"];
+    const rn = getRandomInt(0, subTypes.length - 1);
+    subType = subTypes[rn];
+  } else if (type === "hand") {
+    subTypes = [
       "1hSword",
       "2hSword",
       "1hClub",
@@ -31,14 +32,17 @@ module.exports = generateSubType = type => {
       "rifle",
       "shield"
     ];
-    const rn = getRandomInt(1, 10);
-    return subTypes[rn - 1];
+    const rn = getRandomInt(0, subTypes.length - 1);
+    subType = subTypes[rn];
+  } else if (type === "ammunition") {
+    subTypes = ["arrow", "bolt", "bullet"];
+    const rn = getRandomInt(0, subTypes.length - 1);
+    subType = subTypes[rn];
+  } else if (type === "ring") {
+    subType = "ring";
+  } else if (type === "neck") {
+    subType = "neck";
   }
-  if (type === "ammuntition") {
-    let subTypes = ["arrow", "bolt", "bullet"];
-    const rn = getRandomInt(1, 3);
-    return subTypes[rn - 1];
-  }
-  if (type === "ring") return "ring";
-  if (type === "neck") return "amulet";
+
+  return subType;
 };

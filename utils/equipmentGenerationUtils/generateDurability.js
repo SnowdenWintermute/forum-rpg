@@ -1,6 +1,7 @@
 getRandomInt = require("./getRandomInt");
 
-module.exports = generateDurability = (level, type) => { // Generate durability
+module.exports = generateDurability = (type, level) => {
+  // Generate durability
   let durability;
   if (
     type === "head" ||

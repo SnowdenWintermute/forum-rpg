@@ -1,0 +1,106 @@
+const express = require("express");
+const router = express.Router();
+const mongoose = require("mongoose");
+const passport = require("passport");
+
+// Character model
+const Character = require("../../models/Character");
+// Wallet model
+const Wallet = require("../../models/Wallet");
+// EquipmentClass model
+const EquipmentClass = require("../../models/EquipmentClass");
+
+// Generate equipment
+const equipmentGenerator = require("../../utils/equipmentGenerator");
+
+// Sell a random item to player
+router.post(
+  "/buy-random-equipment",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // Check if logged in
+    if (!req.user) {
+      return res
+        .status(401)
+        .json({ notauthorized: "You must log in to purchase equipment" });
+    }
+
+    // Search user's wallet and check funds
+    Wallet.findOne({ user: req.user }).then(wallet => {
+      // If sufficient funds, create a random equipment
+      console.log(wallet);
+      if (wallet.balance >= 50) {
+        wallet.balance -= 50;
+        wallet.save();
+        Character.findOne({ user: req.user }).then(character => {
+          // Create the equipment
+          const newEquipmentStats = equipmentGenerator(
+            character.stats.lvl,
+            "magic"
+          );
+          const newEquipment = new EquipmentClass({
+            owner: req.user,
+            preReqs: {
+              stats: {
+                str: 0,
+                dex: 0,
+                int: 0
+              },
+              lvl: 0
+            },
+            durability: {
+              max: newEquipmentStats.durability.max,
+              current: newEquipmentStats.durability.current
+            },
+            damage: {
+              min: newEquipmentStats.damage.min,
+              max: newEquipmentStats.damage.max
+            },
+            resistances: {
+              fire: newEquipmentStats.resistances.fire,
+              ice: newEquipmentStats.resistances.ice,
+              lightning: newEquipmentStats.resistances.lightning,
+              water: newEquipmentStats.resistances.water,
+              earth: newEquipmentStats.resistances.earth,
+              wind: newEquipmentStats.resistances.wind,
+              light: newEquipmentStats.resistances.light,
+              dark: newEquipmentStats.resistances.dark
+            },
+            name: newEquipmentStats.name,
+            type: newEquipmentStats.type,
+            subType: newEquipmentStats.subType,
+            handling: newEquipmentStats.handling,
+            rarity: newEquipmentStats.rarity,
+            armorClass: newEquipmentStats.armorClass,
+            hp: newEquipmentStats.hp,
+            mp: newEquipmentStats.mp,
+            bonusDamage: newEquipmentStats.bonusDamage,
+            bonusArmorClass: newEquipmentStats.bonusArmorClass,
+            str: newEquipmentStats.str,
+            dex: newEquipmentStats.dex,
+            int: newEquipmentStats.int,
+            accuracy: newEquipmentStats.accuracy,
+            magicAccuracy: newEquipmentStats.magicAccuracy,
+            magicDefense: newEquipmentStats.magicDefense,
+            armorPiercing: newEquipmentStats.armorPiercing
+          });
+
+          newEquipment.save();
+          character.inventory.push(newEquipment);
+          character
+            .save()
+            .then(
+              res.status(200).json({ character: character, wallet: wallet })
+            );
+        });
+      } else {
+        // If not enough money
+        res.status(401).json({
+          notenoughfunds: "You need more money to purchase this item"
+        });
+      }
+    });
+  }
+);
+
+module.exports = router;

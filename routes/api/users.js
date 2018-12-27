@@ -57,24 +57,21 @@ router.post("/register", (req, res) => {
                     const newWallet = new Wallet({
                       user: user.id
                     });
-                    newWallet
-                      .save()
-                      // Create blank character sheet
-                      .then(user => {
-                        console.log(user);
-                        Character.findOne({ user: user.id }).then(character => {
-                          if (character) {
-                            return res.status(400).json({
-                              characterexists: "User already has a character"
-                            });
-                          } else {
-                            const newCharacter = new Character({
-                              user: user.id
-                            });
-                            newCharacter.save();
-                            console.log(user);
-                          }
-                        });
+                    newWallet.save();
+                    // Create blank character sheet
+
+                    Character.findOne({ user: user.id })
+                      .then(character => {
+                        if (character) {
+                          return res.status(400).json({
+                            characterexists: "User already has a character"
+                          });
+                        } else {
+                          const newCharacter = new Character({
+                            user: user.id
+                          });
+                          newCharacter.save();
+                        }
                       })
                       .then(res.status(200).json(newWallet))
                       .catch(err => res.status(400).json(err));
