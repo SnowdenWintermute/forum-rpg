@@ -21,6 +21,7 @@ import ForumSections from "./components/forum/ForumSections";
 import ForumSection from "./components/forum/ForumSection";
 import Thread from "./components/forum/Thread";
 import Wallet from "./components/wallet/Wallet";
+import Character from "./components/character/Character";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -67,6 +68,9 @@ class App extends Component {
             </Switch>
             <Switch>
               <PrivateRoute exact path="/wallet" component={Wallet} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/character" component={Character} />
             </Switch>
             <Footer classes={classes.footer} />
           </div>

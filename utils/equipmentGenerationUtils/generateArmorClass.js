@@ -8,6 +8,7 @@ module.exports = function generateArmorClass(type, subType, level) {
     case "feet":
     case "shoulders":
     case "arms":
+    case "legs":
       armorClass = getRandomInt(level, level + 2);
       break;
     case "body":

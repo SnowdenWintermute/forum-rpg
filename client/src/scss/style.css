@@ -1,52 +1,50 @@
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
-$colors: (
-  bgDark: #333,
-  bgDarker: #222,
-  bgLight: #fee,
-  textLight: #333,
-  textDark: #fee,
-  linkDark: #3af,
-  linkDarkHover: #4bf,
-  detailTextDark: #999,
-  buttonTextDark: white,
-  xButtonDark: #c33,
-  xButtonDarkHover: #e22,
-  buttonAltDark: #3a4,
-  buttonAltDarkHover: #5c6,
-  lightRed: rgba(230, 100, 100, 1)
-);
 ul {
   list-style: none;
 }
+
 .nav {
   width: 100%;
   height: 80px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .nav-header-text {
   font-size: 24px;
 }
+
 .nav-dark {
-  background: map-get($colors, bgDarker);
-  color: map-get($colors, textDark);
+  background: #222;
+  color: #fee;
 }
+
 .nav-link {
   font-size: 22px;
   text-decoration: none;
 }
+
 .nav-link-dark {
-  color: map-get($colors, linkDark);
-  &:hover {
-    color: map-get($colors, linkDarkHover);
-  }
+  color: #3af;
 }
+
+.nav-link-dark:hover {
+  color: #4bf;
+}
+
 .nav-btn {
   display: block;
   min-width: 80px;
@@ -57,37 +55,52 @@ ul {
   border: 0;
   cursor: pointer;
 }
+
 .nav-btn-dark {
   color: white;
-  background: map-get($colors, buttonAltDark);
-  &:hover {
-    background: map-get($colors, buttonAltDarkHover);
-  }
+  background: #3a4;
 }
+
+.nav-btn-dark:hover {
+  background: #5c6;
+}
+
 .nav-link-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .like-heart-button {
   background: transparent;
   border: none;
   color: white;
   font-size: 25px;
   cursor: pointer;
-  &:hover {
-    color: red;
-  }
 }
+
+.like-heart-button:hover {
+  color: red;
+}
+
 .footer {
   width: 100%;
   height: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .footer-dark {
-  background: map-get($colors, bgDarker);
-  color: map-get($colors, textDark);
+  background: #222;
+  color: #fee;
 }
+
 .page-body {
   padding-top: 30px;
   height: 100%;
@@ -96,10 +109,12 @@ ul {
   padding-bottom: 100px;
   position: relative;
 }
+
 .body-dark {
-  background: map-get($colors, bgDark);
-  color: map-get($colors, textLight);
+  background: #333;
+  color: #333;
 }
+
 .card {
   width: 400px;
   max-width: 100%;
@@ -107,39 +122,48 @@ ul {
   padding: 15px;
   margin: 0px auto 10px auto;
 }
+
 .card-wide {
   width: 90%;
   min-height: 100px;
   margin: 0px auto 10px auto;
   padding: 10px 15px 10px 15px;
 }
+
 .card-dark {
-  background: map-get($colors, bgDarker);
-  color: map-get($colors, textDark);
+  background: #222;
+  color: #fee;
 }
+
 .input-field {
   border-radius: 4px;
   font-size: 20px;
   font-family: "Open sans";
 }
+
 .text-input {
   height: 40px;
   max-width: 400px;
   padding-left: 8px;
   width: 100%;
   border: 1px solid black;
-  &:focus {
-    box-shadow: 0px 0px 20px lightblue;
-  }
 }
+
+.text-input:focus {
+  -webkit-box-shadow: 0px 0px 20px lightblue;
+          box-shadow: 0px 0px 20px lightblue;
+}
+
 .text-input-invalid {
   height: 30px;
   max-width: 400px;
   padding-left: 8px;
   width: 100%;
   border: 1px solid red;
-  box-shadow: 0px 0px 20px red;
+  -webkit-box-shadow: 0px 0px 20px red;
+          box-shadow: 0px 0px 20px red;
 }
+
 .text-area-input {
   height: 400px;
   width: 600px;
@@ -149,10 +173,13 @@ ul {
   width: 100%;
   border: 1px solid black;
   resize: none;
-  &:focus {
-    box-shadow: 0px 0px 20px lightblue;
-  }
 }
+
+.text-area-input:focus {
+  -webkit-box-shadow: 0px 0px 20px lightblue;
+          box-shadow: 0px 0px 20px lightblue;
+}
+
 .text-area-input-invalid {
   height: 400px;
   width: 600px;
@@ -160,27 +187,33 @@ ul {
   padding-left: 8px;
   margin-top: 10px;
   width: 100%;
-  box-shadow: 0px 0px 20px red;
+  -webkit-box-shadow: 0px 0px 20px red;
+          box-shadow: 0px 0px 20px red;
   resize: none;
 }
+
 .error-text {
-  color: map-get($colors, lightRed);
+  color: #e66464;
 }
+
 .error-box {
   width: 100%;
   padding: 30px;
-  background: map-get($colors, lightRed);
+  background: #e66464;
   text-align: center;
-  color: map-get($colors, textDark);
+  color: #fee;
 }
+
 .text-dark {
   font-size: 24px;
-  color: map-get($colors, textDark);
+  color: #fee;
 }
+
 .detail-text-dark {
   font-size: 22px;
-  color: map-get($colors, detailTextDark);
+  color: #999;
 }
+
 .btn {
   min-width: 80px;
   border: 0px;
@@ -191,99 +224,151 @@ ul {
   font-size: 24px;
   cursor: pointer;
 }
+
 .btn-blue {
   background: #47f;
-  color: map-get($colors, buttonTextDark);
-  &:hover {
-    background: #48f;
-  }
+  color: white;
 }
+
+.btn-blue:hover {
+  background: #48f;
+}
+
 .btn-green {
-  background: map-get($colors, buttonAltDark);
-  color: map-get($colors, buttonTextDark);
-  &:hover {
-    background: map-get($colors, buttonAltDarkHover);
-  }
+  background: #3a4;
+  color: white;
 }
+
+.btn-green:hover {
+  background: #5c6;
+}
+
 .btn-gray {
   background: #999;
-  color: map-get($colors, buttonTextDark);
-  &:hover {
-    background: #aaa;
-  }
+  color: white;
 }
+
+.btn-gray:hover {
+  background: #aaa;
+}
+
 .btn-red {
-  background: map-get($colors, xButtonDark);
-  color: map-get($colors, buttonTextDark);
-  &:hover {
-    background: map-get($colors, xButtonDarkHover);
-  }
+  background: #c33;
+  color: white;
 }
+
+.btn-red:hover {
+  background: #e22;
+}
+
 .x-btn-dark {
   position: absolute;
   top: 0;
   right: 0;
-  background: map-get($colors, xButtonDark);
-  color: map-get($colors, buttonTextDark);
+  background: #c33;
+  color: white;
   border: 0;
   width: 40px;
   height: 40px;
   cursor: pointer;
   font-weight: bold;
-  &:hover {
-    background: map-get($colors, xButtonDarkHover);
-  }
 }
+
+.x-btn-dark:hover {
+  background: #e22;
+}
+
 .header-text-dark {
   text-align: center;
   margin: 0 auto 30px auto;
-  color: map-get($colors, textDark);
+  color: #fee;
 }
+
 .link {
   text-decoration: none;
 }
+
 .link-dark {
-  color: map-get($colors, linkDark);
-  &:hover {
-    color: map-get($colors, linkDarkHover);
-  }
+  color: #3af;
 }
+
+.link-dark:hover {
+  color: #4bf;
+}
+
 .flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .flex-center {
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .flex-align-center {
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .flex-between {
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .flex-around {
-  justify-content: space-around;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
+
 .flex-column {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .like-box {
   width: 90px;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .forum-top-links {
   width: 90%;
   margin: 0px auto 10px auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
+
 .forum-card-text-and-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   width: 100%;
 }
+
 .new-thread-form-holder {
   z-index: 2;
   position: absolute;
@@ -293,49 +378,58 @@ ul {
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
 }
+
 .new-thread-form {
   margin: 30px auto 0px auto;
   padding: 30px;
   width: 800px;
   max-width: 100%;
-  border: 1px solid map-get($colors, linkDark);
+  border: 1px solid #3af;
   position: relative;
 }
+
 .bg-dark {
-  background: map-get($colors, bgDark);
+  background: #333;
 }
+
 .form-label {
   display: block;
   margin-top: 5px;
 }
+
 .reply-card-master {
   border: 1px solid lightblue;
 }
+
 .td-padding {
   padding-right: 100px;
 }
+
 .stats-tab-button {
   width: 50%;
   height: 50px;
   font-size: 1rem;
-  color: map-get($colors, textDark);
-  background: map-get($colors, bgDarker);
+  color: #fee;
+  background: #222;
   border: none;
   cursor: pointer;
-  &:focus {
-    outline: none;
-  }
-  &::-moz-focus-inner {
-    border: 0;
-  }
 }
+
 .stats-table {
   font-size: 24px;
-  color: map-get($colors, textDark);
+  color: #fee;
   width: 100%;
+  position: absolute;
 }
+
 .stats-table-number-column {
   width: 30%;
   text-align: center;
   border: 1px solid grey;
 }
+
+.stats-table-front {
+  z-index: 10;
+  background: #333;
+}
+/*# sourceMappingURL=style.css.map */

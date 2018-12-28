@@ -28,12 +28,12 @@ class Dashboard extends Component {
                 Wallet
               </Link>
             </li>
-            {/* <li>
-              <Link to="/forum" className="link link-dark">
-                Profile
+            <li>
+              <Link to="/character" className="link link-dark">
+                Character
               </Link>
             </li>
-            <li>
+            {/*<li>
               <Link to="/forum" className="link link-dark">
                 Account
               </Link>

@@ -285,3 +285,26 @@ ul {
 
 .td-padding {
   padding-right: 100px; }
+
+.stats-tab-button {
+  width: 50%;
+  height: 50px;
+  font-size: 1rem;
+  color: #fee;
+  background: #222;
+  border: none;
+  cursor: pointer; }
+  .stats-tab-button:focus {
+    outline: none; }
+  .stats-tab-button::-moz-focus-inner {
+    border: 0; }
+
+.stats-table {
+  font-size: 24px;
+  color: #fee;
+  width: 100%; }
+
+.stats-table-number-column {
+  width: 30%;
+  text-align: center;
+  border: 1px solid grey; }

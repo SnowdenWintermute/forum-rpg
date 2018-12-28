@@ -31,20 +31,19 @@ router.get(
     }
 
     let promises = [];
-    let inventoryItems = [];
-    Character.findOne({ user: req.user.id })
-      .then(character => {
-        character.inventory.forEach(item => {
-          promises.push(
-            EquipmentClass.findById(item._id).then(item => {
-              inventoryItems.push(item);
-            })
-          );
-        });
-        Promise.all(promises).then(console.log(inventoryItems));
-        console.log(character.inventory);
-      })
-      .then(res.status(200).json({ inventory: "" }));
+    let inventory = [];
+    Character.findOne({ user: req.user.id }).then(character => {
+      character.inventory.forEach(item => {
+        promises.push(
+          EquipmentClass.findById(item._id).then(item => {
+            inventory.push(item);
+          })
+        );
+      });
+      Promise.all(promises).then(() => {
+        res.status(200).json(inventory);
+      });
+    });
   }
 );
 
