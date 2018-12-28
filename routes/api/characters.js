@@ -42,6 +42,7 @@ router.get(
           );
         });
         Promise.all(promises).then(console.log(inventoryItems));
+        console.log(character.inventory);
       })
       .then(res.status(200).json({ inventory: "" }));
   }
