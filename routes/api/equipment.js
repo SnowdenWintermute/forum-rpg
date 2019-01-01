@@ -5,8 +5,6 @@ const passport = require("passport");
 
 // Equipment model
 const EquipmentClass = require("../../models/EquipmentClass");
-// Generate equipment
-const equipmentGenerator = require("../../utils/equipmentGenerator");
 
 // create item of equipment
 router.post("/create", (req, res) => {

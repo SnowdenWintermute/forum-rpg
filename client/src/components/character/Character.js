@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
+import Stats from "./Stats";
+import CurrentEquipment from "./CurrentEquipment";
+import Inventory from "./Inventory";
+
 class Character extends Component {
   constructor(props) {
     super(props);
@@ -14,127 +18,14 @@ class Character extends Component {
   };
 
   render() {
-    let statTable;
-    if (this.state.activeStatTab === "resistances")
-      statTable = (
-        <table className={"stats-table"}>
-          <tbody>
-            <tr>
-              <td>Fire:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Ice:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Lightning:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Water:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Earth:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Wind:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Light:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Dark:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-          </tbody>
-        </table>
-      );
-
-    if (this.state.activeStatTab === "stats")
-      statTable = (
-        <table className={"stats-table"}>
-          <tbody>
-            <tr>
-              <td>Level:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>HP:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>MP:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Armor Class:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Magic Defense:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-            <tr>
-              <td>Damage:</td>
-              <td className="stats-table-number-column">1 - 2</td>
-            </tr>
-            <tr>
-              <td>Armor Piercing:</td>
-              <td className="stats-table-number-column">1</td>
-            </tr>
-          </tbody>
-        </table>
-      );
-
     return (
-      <div className="page-body body-dark">
+      <div className="page-body body-dark" id="character-page">
         <h1 className="header-text-dark">Character</h1>
-        <section
-          id="stats"
-          style={{
-            marginLeft: "30px",
-            border: "1px solid lightBlue",
-            width: "300px"
-          }}
-        >
-          <div
-            id="stats-tab-buttons"
-            style={{
-              width: "100%"
-            }}
-          >
-            <button
-              onClick={this.onStatsTabClick}
-              name="stats"
-              className="stats-tab-button"
-              style={
-                this.state.activeStatTab === "stats"
-                  ? { background: "#333" }
-                  : {}
-              }
-            >
-              Stats
-            </button>
-            <button
-              onClick={this.onStatsTabClick}
-              name="resistances"
-              className="stats-tab-button"
-              style={
-                this.state.activeStatTab === "resistances"
-                  ? { background: "#333" }
-                  : {}
-              }
-            >
-              Resists
-            </button>
-          </div>
-          {statTable}
-        </section>
+        <div id="character-windows-holder" style={{ width: "100%" }}>
+          <Stats />
+          <CurrentEquipment />
+          <Inventory />
+        </div>
       </div>
     );
   }

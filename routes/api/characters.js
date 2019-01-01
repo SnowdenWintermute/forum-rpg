@@ -32,18 +32,22 @@ router.get(
 
     let promises = [];
     let inventory = [];
-    Character.findOne({ user: req.user.id }).then(character => {
-      character.inventory.forEach(item => {
-        promises.push(
-          EquipmentClass.findById(item._id).then(item => {
-            inventory.push(item);
+    Character.findOne({ user: req.user.id })
+      .then(character => {
+        character.inventory.forEach(item => {
+          promises.push(
+            EquipmentClass.findById(item._id).then(item => {
+              inventory.push(item);
+            })
+          );
+        });
+        Promise.all(promises)
+          .then(() => {
+            res.status(200).json(inventory);
           })
-        );
-      });
-      Promise.all(promises).then(() => {
-        res.status(200).json(inventory);
-      });
-    });
+          .catch(err => res.status(400).json({ err: "error" }));
+      })
+      .catch(err => res.status(400).json({ err: "error" }));
   }
 );
 

@@ -314,6 +314,13 @@ ul {
 .td-padding {
   padding-right: 100px;
 }
+#character-windows-holder {
+  border: 1px solid blue;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
 .stats-tab-button {
   width: 50%;
   height: 50px;
@@ -329,13 +336,62 @@ ul {
     border: 0;
   }
 }
+#stats {
+  display: block;
+  align-self: flex-start;
+}
 .stats-table {
   font-size: 24px;
   color: map-get($colors, textDark);
   width: 100%;
+  height: fit-content;
 }
 .stats-table-number-column {
   width: 30%;
   text-align: center;
   border: 1px solid grey;
+}
+#current-equipment {
+  border: 1px solid lightBlue;
+  width: 410px;
+  margin-left: 30px;
+  display: block;
+}
+#item-stats {
+  height: 80px;
+  border-bottom: 1px solid lightblue;
+}
+#eq-grid {
+  height: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-template-rows: repeat(4, auto);
+  grid-gap: 10px;
+  .eq-grid-item {
+    color: map-get($colors, textDark);
+    border: 1px solid grey;
+    height: 100px;
+    width: 80px;
+    .eq-slot-label {
+      font-size: 0.8rem;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 25%;
+    }
+    img {
+      width: 100%;
+    }
+  }
+}
+#inventory {
+  border: 1px solid lightblue;
+  width: 500px;
+  height: 400px;
+  display: block;
 }
