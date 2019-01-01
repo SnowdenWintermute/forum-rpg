@@ -317,8 +317,8 @@ ul {
 #character-windows-holder {
   border: 1px solid blue;
   display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 .stats-tab-button {
@@ -394,4 +394,30 @@ ul {
   width: 500px;
   height: 400px;
   display: block;
+  color: map-get($colors, textDark)
+  
+}
+#inventory-header{
+  border: 1px solid lightBlue;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#inventory-list{
+  overflow: scroll;
+  height: calc(100% - 80px);
+  overflow-x: hidden;
+}
+.inventory-item{
+  font-size: 1rem;
+  width: 95%;
+  margin: 10px;
+  border: 1px solid grey;
+}
+.btn-inv{
+  width: 50%;
+  height: 40px;
+  border: none;
+  cursor: pointer;
 }
