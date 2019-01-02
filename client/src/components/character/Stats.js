@@ -98,11 +98,6 @@ class Stats extends Component {
     return (
       <section
         id="stats"
-        style={{
-          marginLeft: "30px",
-          border: "1px solid lightBlue",
-          width: "300px"
-        }}
       >
         <div
           id="stats-tab-buttons"

@@ -281,22 +281,24 @@ ul {
   margin-top: 5px; }
 
 .reply-card-master {
-  border: 1px solid lightblue; }
+  border: 1px solid #3af; }
 
 .td-padding {
   padding-right: 100px; }
 
 #character-windows-holder {
-  border: 1px solid blue;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap; }
+  align-items: flex-start;
+  flex-wrap: wrap;
+  border: 1px solid #3af;
+  width: fit-content;
+  margin: 0 auto; }
 
 .stats-tab-button {
   width: 50%;
-  height: 50px;
-  font-size: 1rem;
+  height: 80px;
+  font-size: 26px;
   color: #fee;
   background: #222;
   border: none;
@@ -308,13 +310,17 @@ ul {
 
 #stats {
   display: block;
-  align-self: flex-start; }
+  align-self: flex-start;
+  width: 350px; }
 
 .stats-table {
   font-size: 24px;
   color: #fee;
-  width: 100%;
+  margin-top: 12px;
+  width: 96%;
   height: fit-content; }
+  .stats-table td {
+    padding-left: 10px; }
 
 .stats-table-number-column {
   width: 30%;
@@ -322,21 +328,23 @@ ul {
   border: 1px solid grey; }
 
 #current-equipment {
-  border: 1px solid lightBlue;
-  width: 410px;
-  margin-left: 30px;
+  border-right: 1px solid #3af;
+  border-left: 1px solid #3af;
+  width: 350px;
+  height: 550px;
   display: block; }
 
 #item-stats {
   height: 80px;
-  border-bottom: 1px solid lightblue; }
+  border-bottom: 1px solid #3af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fee; }
 
 #eq-grid {
-  height: 100%;
-  margin: 0 auto;
+  margin-top: 15px;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
   display: grid;
   grid-template-columns: repeat(3, auto);
   grid-template-rows: repeat(4, auto);
@@ -357,14 +365,13 @@ ul {
       width: 100%; }
 
 #inventory {
-  border: 1px solid lightblue;
-  width: 500px;
-  height: 400px;
+  width: 350px;
+  height: 550px;
   display: block;
   color: #fee; }
 
 #inventory-header {
-  border: 1px solid lightBlue;
+  border-bottom: 1px solid #3af;
   height: 80px;
   display: flex;
   align-items: center;
@@ -378,7 +385,7 @@ ul {
 .inventory-item {
   font-size: 1rem;
   width: 95%;
-  margin: 10px;
+  margin: 15px auto 10px auto;
   border: 1px solid grey; }
 
 .btn-inv {

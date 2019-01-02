@@ -6,6 +6,7 @@ class CurrentEquipment extends Component {
     return (
       <section id="current-equipment">
         <div id="item-stats">ItemStats</div>
+        <div id="eq-grid-holder">
         <div id="eq-grid">
           <div id="eq-shoulders" className="eq-grid-item">
             <div className="eq-slot-label">Shoulders</div>
@@ -55,6 +56,7 @@ class CurrentEquipment extends Component {
             <div className="eq-slot-label">Left</div>
             <img alt="eq" src={EmptySlot} />
           </div>
+        </div>
         </div>
       </section>
     );

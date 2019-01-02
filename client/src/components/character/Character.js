@@ -20,8 +20,8 @@ class Character extends Component {
   render() {
     return (
       <div className="page-body body-dark" id="character-page">
-        <h1 className="header-text-dark">Character</h1>
-        <div id="character-windows-holder" style={{ width: "100%" }}>
+        <h3 className="header-text-dark">Character</h3>
+        <div id="character-windows-holder">
           <Stats />
           <CurrentEquipment />
           <Inventory />
