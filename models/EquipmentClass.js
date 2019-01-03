@@ -18,6 +18,10 @@ const EquipmentClassSchema = new Schema({
     type: String,
     default: ""
   },
+  img: {
+    type: String,
+    default: ""
+  },
   handling: {
     type: String,
     default: ""

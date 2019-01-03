@@ -52,39 +52,17 @@ router.get(
 );
 
 // get equipment
-router.get("/equipment", (req, res) => {
-  Character.findOne({ user: req.characterId })
-    .then(character => {
-      character.inventory.forEach(item => {
-        EquipmentClass.findById(item.id).then(equipment =>
-          console.log(equipment)
-        );
-      });
-      res.status(200).json(character.equipment);
-    })
-    .catch(err =>
-      res
-        .status(404)
-        .json({ nosuchcharacter: "There is no character with that ID" })
-    );
-});
 
 // change equipment
 router.put(
-  "/equipment",
+  "/equip-item/:itemId",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Character.findOne({ user: req.user.id }).then(character => {
-      const { itemToBeEquipped, slot } = req.body;
-      if (itemToBeEquipped.type === slot) {
-        // check to make sure you aren't wearing rings on your feet
-        character.equipment.slot = req.body.itemToBeEquipped._id;
-        res.status(200).json(character);
-      } else {
-        res.status(400).json({
-          wrongslot: "You can not equip this type of item to that slot"
-        });
-      }
+    if (!req.user) {
+      res.status(401).json({ notloggedin: "You must log in to equip items" });
+    }
+    EquipmentClass.findById(req.params.itemId).then(equipment => {
+      console.log(equipment);
     });
   }
 );

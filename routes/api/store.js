@@ -52,10 +52,7 @@ router.post(
               max: newEquipmentStats.durability.max,
               current: newEquipmentStats.durability.current
             },
-            damage: {
-              min: newEquipmentStats.damage.min,
-              max: newEquipmentStats.damage.max
-            },
+            damage: newEquipmentStats.damage,
             resistances: {
               fire: newEquipmentStats.resistances.fire,
               ice: newEquipmentStats.resistances.ice,
@@ -69,6 +66,7 @@ router.post(
             name: newEquipmentStats.name,
             type: newEquipmentStats.type,
             subType: newEquipmentStats.subType,
+            img: newEquipmentStats.img,
             handling: newEquipmentStats.handling,
             rarity: newEquipmentStats.rarity,
             armorClass: newEquipmentStats.armorClass,

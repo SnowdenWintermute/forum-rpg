@@ -5,13 +5,12 @@ module.exports = generateDurability = (type, level) => {
   let durability;
   if (
     type === "head" ||
-    "body" ||
-    "legs" ||
-    "feet" ||
-    "shoulders" ||
-    "arms" ||
-    "hands" ||
-    "back"
+    type === "body" ||
+    type === "legs" ||
+    type === "feet" ||
+    type === "shoulders" ||
+    type === "arms" ||
+    type === "hands"
   ) {
     durability = {
       max: 10 + level * 5,

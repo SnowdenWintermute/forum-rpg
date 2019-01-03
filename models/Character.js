@@ -175,7 +175,6 @@ const CharacterSchema = new Schema({
     shoulders: { type: Schema.Types.ObjectId, ref: "equipment" },
     arms: { type: Schema.Types.ObjectId, ref: "equipment" },
     hands: { type: Schema.Types.ObjectId, ref: "equipment" },
-    back: { type: Schema.Types.ObjectId, ref: "equipment" },
     ringLeft: { type: Schema.Types.ObjectId, ref: "equipment" },
     ringRight: { type: Schema.Types.ObjectId, ref: "equipment" },
     neck: { type: Schema.Types.ObjectId, ref: "equipment" },

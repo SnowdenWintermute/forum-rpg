@@ -1,7 +1,12 @@
-import { GET_INVENTORY, SET_INVENTORY_LOADING } from "../actions/types";
+import {
+  GET_INVENTORY,
+  SET_INVENTORY_LOADING,
+  EQUIP_ITEM
+} from "../actions/types";
 
 const initialState = {
   inventory: null,
+  currentEquipment: null,
   loading: null
 };
 
@@ -18,6 +23,11 @@ export default function(state = initialState, action) {
         ...state,
         inventory: {},
         loading: true
+      };
+    case EQUIP_ITEM:
+      return {
+        ...state,
+        currentEquipment: {}
       };
     default:
       return state;

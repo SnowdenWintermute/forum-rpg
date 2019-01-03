@@ -10,7 +10,6 @@ module.exports = generateType = () => {
     "shoulders",
     "arms",
     "hands",
-    "back",
     "ring",
     "neck",
     "hand",

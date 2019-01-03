@@ -187,6 +187,12 @@ ul {
   .btn-gray:hover {
     background: #aaa; }
 
+.btn-dark {
+  background: #222;
+  color: white; }
+  .btn-dark:hover {
+    background: #444; }
+
 .btn-red {
   background: #c33;
   color: white; }
@@ -314,7 +320,7 @@ ul {
   width: 350px; }
 
 .stats-table {
-  font-size: 24px;
+  font-size: 1.2rem;
   color: #fee;
   margin-top: 12px;
   width: 96%;
@@ -386,10 +392,16 @@ ul {
   font-size: 1rem;
   width: 95%;
   margin: 15px auto 10px auto;
-  border: 1px solid grey; }
+  border: 1px solid grey;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: repeat(1, auto); }
+  .inventory-item img {
+    width: 100%;
+    display: block; }
 
 .btn-inv {
-  width: 50%;
+  width: 100%;
   height: 40px;
   border: none;
   cursor: pointer; }

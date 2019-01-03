@@ -212,6 +212,13 @@ ul {
     background: #aaa;
   }
 }
+.btn-dark {
+  background: #222;
+  color: map-get($colors, buttonTextDark);
+  &:hover {
+    background: #444;
+  }
+}
 .btn-red {
   background: map-get($colors, xButtonDark);
   color: map-get($colors, buttonTextDark);
@@ -325,7 +332,7 @@ ul {
 }
 .stats-tab-button {
   width: 50%;
-  height:80px;
+  height: 80px;
   font-size: 26px;
   color: map-get($colors, textDark);
   background: map-get($colors, bgDarker);
@@ -344,12 +351,12 @@ ul {
   width: 350px;
 }
 .stats-table {
-  font-size: 24px;
+  font-size: 1.2rem;
   color: map-get($colors, textDark);
   margin-top: 12px;
   width: 96%;
   height: fit-content;
-  td{
+  td {
     padding-left: 10px;
   }
 }
@@ -371,7 +378,7 @@ ul {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: map-get($colors, textDark)
+  color: map-get($colors, textDark);
 }
 #eq-grid {
   margin-top: 15px;
@@ -402,29 +409,35 @@ ul {
   width: 350px;
   height: 550px;
   display: block;
-  color: map-get($colors, textDark)
-  
+  color: map-get($colors, textDark);
 }
-#inventory-header{
+#inventory-header {
   border-bottom: 1px solid map-get($colors, linkDark);
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-#inventory-list{
+#inventory-list {
   overflow: scroll;
   height: calc(100% - 80px);
   overflow-x: hidden;
 }
-.inventory-item{
+.inventory-item {
   font-size: 1rem;
   width: 95%;
   margin: 15px auto 10px auto;
   border: 1px solid grey;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: repeat(1, auto);
+  img {
+    width: 100%;
+    display: block;
+  }
 }
-.btn-inv{
-  width: 50%;
+.btn-inv {
+  width: 100%;
   height: 40px;
   border: none;
   cursor: pointer;

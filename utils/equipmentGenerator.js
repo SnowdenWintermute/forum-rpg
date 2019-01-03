@@ -5,6 +5,7 @@ generateDurability = require("./equipmentGenerationUtils/generateDurability");
 generateArmorClass = require("./equipmentGenerationUtils/generateArmorClass");
 generateStats = require("./equipmentGenerationUtils/generateStats");
 generateName = require("./equipmentGenerationUtils/generateName");
+generateImg = require("./equipmentGenerationUtils/generateImg");
 
 module.exports = function equipmentGenerator(level, rarity) {
   // Generate Name
@@ -26,14 +27,16 @@ module.exports = function equipmentGenerator(level, rarity) {
   const armorClass = generateArmorClass(type, subType, level);
   const stats = generateStats(subType, level, rarity);
   const name = generateName(type, subType, stats);
+  const img = generateImg(type, subType);
 
   const newEquipment = {
     name: name,
     type: type,
     subType: subType,
+    img: img,
     handling: handling,
     rarity: rarity,
-    preReqs: "", // todo
+    preReqs: {}, // todo
     durability: durability,
     damage: damage,
     armorClass: armorClass,
@@ -60,5 +63,6 @@ module.exports = function equipmentGenerator(level, rarity) {
     }
   };
 
+  console.log(newEquipment);
   return newEquipment;
 };
