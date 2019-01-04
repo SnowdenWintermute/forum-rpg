@@ -20,6 +20,11 @@ $colors: (
   buttonAltDarkHover: #5c6,
   lightRed: rgba(230, 100, 100, 1)
 );
+@mixin less1100 {
+  @media (max-width: 1100px) {
+    @content;
+  }
+}
 ul {
   list-style: none;
 }
@@ -329,6 +334,9 @@ ul {
   border: 1px solid map-get($colors, linkDark);
   width: fit-content;
   margin: 0 auto;
+  @include less1100 {
+    flex-direction: column;
+  }
 }
 .stats-tab-button {
   width: 50%;
@@ -349,6 +357,9 @@ ul {
   display: block;
   align-self: flex-start;
   width: 350px;
+  @include less1100 {
+    margin-bottom: 30px;
+  }
 }
 .stats-table {
   font-size: 1.2rem;
@@ -371,6 +382,11 @@ ul {
   width: 350px;
   height: 550px;
   display: block;
+  @include less1100 {
+    border-left: none;
+    border-right: none;
+    border-top: 1px solid map-get($colors, linkDark);
+  }
 }
 #item-stats {
   height: 80px;
@@ -410,6 +426,9 @@ ul {
   height: 550px;
   display: block;
   color: map-get($colors, textDark);
+  @include less1100 {
+    border-top: 1px solid map-get($colors, linkDark);
+  }
 }
 #inventory-header {
   border-bottom: 1px solid map-get($colors, linkDark);

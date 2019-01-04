@@ -27,7 +27,7 @@ export default function(state = initialState, action) {
     case EQUIP_ITEM:
       return {
         ...state,
-        currentEquipment: {}
+        character: action.payload
       };
     default:
       return state;

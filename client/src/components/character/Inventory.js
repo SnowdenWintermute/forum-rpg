@@ -11,14 +11,24 @@ class Inventory extends Component {
   }
 
   onEquipClick = e => {
-    this.props.equipItem(e.target.name);
+    const equipItem = this.props.equipItem
+    const getInventory = this.props.getInventory
+    const equipItemPromise = new Promise(function(resolve, reject){
+      resolve(
+        equipItem(e.target.name)
+      )
+    }
+    )
+    equipItemPromise.then(function(val){
+      getInventory()
+      })
   };
 
   render() {
     let { character } = this.props;
     let inventoryItems;
 
-    if (character === undefined || character === null) {
+    if (character === undefined || character === null || character.loading) {
       inventoryItems = (
         <div>
           <img src={LoadingGif} alt="loading..." />
@@ -104,10 +114,10 @@ class Inventory extends Component {
                   {armorClass ? `Armor Class: ${armorClass}` : null}{" "}
                 </div>
                 <div>
-                  {stats[0].statName}: {stats[0].statValue}
+                  {stats[0] ? stats[0].statName : "undefined" }: {stats[0] ? stats[0].statValue : "undefined"}
                 </div>
                 <div>
-                  {stats[1].statName}: {stats[1].statValue}
+                  {stats[1] ? stats[1].statName : "undefined" }: {stats[1] ? stats[1].statValue : "undefined"}
                 </div>
                 <div>Prerequisites: None</div>
               </div>

@@ -29,13 +29,13 @@ export const equipItem = itemId => dispatch => {
     dispatch({
       type: EQUIP_ITEM,
       payload: res.data
-    }).catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-  });
+    })
+  }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  );;
 };
 
 export const setInventoryLoading = () => {

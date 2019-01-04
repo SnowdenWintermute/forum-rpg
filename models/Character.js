@@ -178,8 +178,8 @@ const CharacterSchema = new Schema({
     ringLeft: { type: Schema.Types.ObjectId, ref: "equipment" },
     ringRight: { type: Schema.Types.ObjectId, ref: "equipment" },
     neck: { type: Schema.Types.ObjectId, ref: "equipment" },
-    rightHand: { type: Schema.Types.ObjectId, ref: "equipment" },
-    leftHand: { type: Schema.Types.ObjectId, ref: "equipment" },
+    handRight: { type: Schema.Types.ObjectId, ref: "equipment" },
+    handLeft: { type: Schema.Types.ObjectId, ref: "equipment" },
     ammunition: { type: Schema.Types.ObjectId, ref: "equipment" }
   },
   inventory: [

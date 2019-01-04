@@ -66,10 +66,39 @@ router.put(
       if (equipment.owner.toString() === req.user.id.toString()) {
         console.log("(characters.js line 67) item ownership confirmed");
         Character.findOne({ user: req.user.id }).then(character => {
-          console.log(character);
+
           console.log(equipment.type);
+          if(equipment.type !== "hand" && equipment.type !== "ring" && equipment.type !== "ammunition"){
           character.equipment[equipment.type] = equipment;
-          console.log(character.equ);
+
+          // If no ring on 1st finger, put ring, else put on 2nd finger, else replace 1st ring with new ring
+          } else if(equipment.type === "ring" || equipment.type === "hand"){
+            if(!character.equipment[equipment.type+"Right"]){
+              character.equipment[equipment.type+"Right"] = equipment
+            }
+            else if(!character.equipment[equipment.type+"Left"]) {
+              character.equipment[equipment.type+"Left"] = equipment
+            }
+            else {
+              character.inventory.push(character.equipment[equipment.type+"Right"])
+              character.equipment[equipment.type+"Right"] = equipment
+            }
+          } else { // Put ammunition into left or right hand
+            if(!character.equipment["handRight"]){
+              character.equipment["handRight"] = equipment
+            }
+            else if(!character.equipment["handLeft"]) {
+              character.equipment["handLeft"] = equipment
+            }
+            else {
+              character.inventory.push(character.equipment["handRight"])
+              character.equipment["handRight"] = equipment
+            }
+          }
+          // Remove item from inventory array
+          character.inventory.splice(character.inventory.indexOf(equipment.id),1)
+          console.log(character);
+          character.save().then(res.status(200).json(character))
         });
       } else {
         res
