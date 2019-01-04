@@ -7,11 +7,11 @@ generateStats = require("./equipmentGenerationUtils/generateStats");
 generateName = require("./equipmentGenerationUtils/generateName");
 generateImg = require("./equipmentGenerationUtils/generateImg");
 
-module.exports = function equipmentGenerator(level, rarity) {
+module.exports = function equipmentGenerator(level, rarity, itemType, itemSubType) {
   // Generate Name
 
-  const type = generateType();
-  const subType = generateSubType(type);
+  const type = itemType !== "random" ? itemType : generateType();
+  const subType = itemSubType !== "random" && itemType !=="random" ? itemSubType : generateSubType(type);
   const handling =
     type === "hand"
       ? subType === "1hSword" ||

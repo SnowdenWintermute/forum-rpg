@@ -1,8 +1,31 @@
 import React, { Component } from "react";
 import EmptySlot from "../../img/equipment/empty.png";
+import {connect} from "react-redux"
+import PropTypes from "prop-types"
+
+import {getEquipment, getCharacter} from "../../actions/characterActions"
 
 class CurrentEquipment extends Component {
+  componentDidMount(){
+    this.props.getEquipment()
+    this.props.getCharacter()
+  }
   render() {
+    let {equipment} = this.props.character
+    
+
+    let getEquipmentImage = (slot) => {
+      if(equipment){
+        if(equipment[slot]){
+          console.log(equipment)
+          console.log(`../../img/equipment/${equipment[slot].img}.png`)
+          return `../../img/equipment/${equipment[slot].img}.png`
+        }
+      }
+      return EmptySlot
+    }
+    let shouldersImg = getEquipmentImage("shoulders")
+
     return (
       <section id="current-equipment">
         <div id="item-stats">ItemStats</div>
@@ -10,7 +33,7 @@ class CurrentEquipment extends Component {
           <div id="eq-grid">
             <div id="eq-shoulders" className="eq-grid-item">
               <div className="eq-slot-label">Shoulders</div>
-              <img alt="eq" src={EmptySlot} />
+              <img alt="eq" src={require(shouldersImg)} />
             </div>
             <div id="eq-head" className="eq-grid-item">
               <div className="eq-slot-label">Head</div>
@@ -63,4 +86,15 @@ class CurrentEquipment extends Component {
   }
 }
 
-export default CurrentEquipment;
+CurrentEquipment.propTypes = {
+  auth: PropTypes.object.isRequired,
+  getEquipment: PropTypes.func.isRequired,
+}
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  equipment: state.character.equipment,
+  character: state.character
+})
+
+export default connect(mapStateToProps, {getEquipment, getCharacter})(CurrentEquipment);

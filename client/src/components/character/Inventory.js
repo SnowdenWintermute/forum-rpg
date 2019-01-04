@@ -12,16 +12,7 @@ class Inventory extends Component {
 
   onEquipClick = e => {
     const equipItem = this.props.equipItem
-    const getInventory = this.props.getInventory
-    const equipItemPromise = new Promise(function(resolve, reject){
-      resolve(
         equipItem(e.target.name)
-      )
-    }
-    )
-    equipItemPromise.then(function(val){
-      getInventory()
-      })
   };
 
   render() {
