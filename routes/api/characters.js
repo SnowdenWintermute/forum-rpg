@@ -62,7 +62,20 @@ router.put(
       res.status(401).json({ notloggedin: "You must log in to equip items" });
     }
     EquipmentClass.findById(req.params.itemId).then(equipment => {
-      console.log(equipment);
+      // Check ownership of item matches current user
+      if (equipment.owner.toString() === req.user.id.toString()) {
+        console.log("(characters.js line 67) item ownership confirmed");
+        Character.findOne({ user: req.user.id }).then(character => {
+          console.log(character);
+          console.log(equipment.type);
+          character.equipment[equipment.type] = equipment;
+          console.log(character.equ);
+        });
+      } else {
+        res
+          .status(401)
+          .json({ notyouritem: "You may only equip an item that you own" });
+      }
     });
   }
 );
