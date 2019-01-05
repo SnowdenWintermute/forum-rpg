@@ -5,12 +5,12 @@ module.exports = generateSubType = type => {
 
   const armors = ["cloth", "leather", "mail", "plate"];
   const weapons = [
-    "1hSword",
-    "2hSword",
-    "1hClub",
-    "2hClub",
-    "1hAxe",
-    "2hAxe",
+    "oneHandSword",
+    "twoHandSword",
+    "oneHandClub",
+    "twoHandClub",
+    "oneHandAxe",
+    "twoHandAxe",
     "polearm",
     "bow",
     "crossbow",

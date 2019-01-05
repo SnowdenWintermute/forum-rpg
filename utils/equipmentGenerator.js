@@ -14,9 +14,9 @@ module.exports = function equipmentGenerator(level, rarity, itemType, itemSubTyp
   const subType = itemSubType !== "random" && itemType !=="random" ? itemSubType : generateSubType(type);
   const handling =
     type === "hand"
-      ? subType === "1hSword" ||
-        subType === "1hClub" ||
-        subType === "1hAxe" ||
+      ? subType === "oneHandSword" ||
+        subType === "oneHandClub" ||
+        subType === "oneHandAxe" ||
         subType === "pistol" ||
         subType === "shield"
         ? "1h"

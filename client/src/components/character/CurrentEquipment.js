@@ -24,6 +24,16 @@ class CurrentEquipment extends Component {
       ring: require('../../img/equipment/ring.png'),
       legs: require('../../img/equipment/legs.png'),
       feet: require('../../img/equipment/feet.png'),
+      oneHandSword: require('../../img/equipment/oneHandSword.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
+      feet: require('../../img/equipment/feet.png'),
     }
 
 
@@ -47,39 +57,39 @@ class CurrentEquipment extends Component {
           <div id="eq-grid">
             <div id="eq-shoulders" className="eq-grid-item">
               <div className="eq-slot-label">Shoulders</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.shoulders  ? equipment.shoulders.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.shoulders  ? equipment.shoulders.img: "empty": "empty"]} />
             </div>
             <div id="eq-head" className="eq-grid-item">
               <div className="eq-slot-label">Head</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.head ? equipment.head.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.head ? equipment.head.img: "empty": "empty"]} />
             </div>
             <div id="eq-neck" className="eq-grid-item">
               <div className="eq-slot-label">Neck</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.neck ? equipment.neck.type: "empty" : "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.neck ? equipment.neck.img: "empty" : "empty"]} />
             </div>
             <div id="eq-arms" className="eq-grid-item">
               <div className="eq-slot-label">Arms</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.arms ? equipment.arms.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.arms ? equipment.arms.img: "empty": "empty"]} />
             </div>
             <div id="eq-body" className="eq-grid-item">
               <div className="eq-slot-label">Body</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.body ? equipment.body.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.body ? equipment.body.img: "empty": "empty"]} />
             </div>
             <div id="eq-hands" className="eq-grid-item">
               <div className="eq-slot-label">Hands</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.hands ? equipment.hands.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.hands ? equipment.hands.img: "empty": "empty"]} />
             </div>
             <div id="eq-ring1" className="eq-grid-item">
               <div className="eq-slot-label">Ring</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.ringRight ? equipment.ringRight.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.ringRight ? equipment.ringRight.img: "empty": "empty"]} />
             </div>
             <div id="eq-legs" className="eq-grid-item">
               <div className="eq-slot-label">Legs</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.legs ? equipment.legs.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.legs ? equipment.legs.img: "empty": "empty"]} />
             </div>
             <div id="eq-ring2" className="eq-grid-item">
               <div className="eq-slot-label">Ring</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.ringLeft ? equipment.ringLeft.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.ringLeft ? equipment.ringLeft.img: "empty": "empty"]} />
             </div>
             <div id="eq-right-hand" className="eq-grid-item">
               <div className="eq-slot-label">Right</div>
@@ -87,7 +97,7 @@ class CurrentEquipment extends Component {
             </div>
             <div id="eq-feet" className="eq-grid-item">
               <div className="eq-slot-label">Feet</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.feet ? equipment.feet.type: "empty": "empty"]} />
+              <img alt="eq" src={eqPics[equipment ? equipment.feet ? equipment.feet.img: "empty": "empty"]} />
             </div>
             <div id="eq-left-hand" className="eq-grid-item">
               <div className="eq-slot-label">Left</div>
