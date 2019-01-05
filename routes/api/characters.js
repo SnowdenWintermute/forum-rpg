@@ -82,6 +82,7 @@ router.get(
     Character.findOne({ user: req.user.id })
       .populate('equipment.shoulders')
       .populate('equipment.head')
+      .populate('equipment.neck')
       .populate('equipment.arms')
       .populate('equipment.body')
       .populate('equipment.hands')
