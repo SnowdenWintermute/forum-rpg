@@ -377,9 +377,30 @@ ul {
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 25%; }
+      height: 20px;
+      pointer-events: none; }
+    #eq-grid .eq-grid-item .eq-img-holder {
+      position: relative;
+      height: 80px; }
     #eq-grid .eq-grid-item img {
       width: 100%; }
+
+.unequip-hover {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.2);
+  color: #3af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  opacity: .0;
+  height: 100%;
+  width: 100%;
+  transition: .3s;
+  cursor: pointer; }
+  .unequip-hover:hover {
+    opacity: 1; }
 
 #inventory {
   width: 350px;

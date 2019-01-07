@@ -2,24 +2,35 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getInventory, equipItem } from "../../actions/characterActions";
+import { getInventory, equipItem, destroyItem } from "../../actions/characterActions";
 import LoadingGif from "../../img/loading.gif";
 
 class Inventory extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      character: this.props.character
+    }
+  }
   componentDidMount() {
     this.props.getInventory();
+    this.setState({character: this.props.character})
+    console.log(this.state)
   }
 
   onEquipClick = e => {
-    const equipItem = this.props.equipItem
-        equipItem(e.target.name)
+    this.props.equipItem(e.target.name)
   };
 
+  onDestroyClick = e => {
+    this.props.destroyItem(e.target.name)
+  }
+
   render() {
-    let { character } = this.props;
+    let  character = this.state.character ? this.state.character : null;
     let inventoryItems;
 
-    if (character === undefined || character === null || character.loading) {
+    if (character.inventory === undefined || character === null || character.loading) {
       inventoryItems = (
         <div>
           <img src={LoadingGif} alt="loading..." />
@@ -85,7 +96,7 @@ class Inventory extends Component {
                   >
                     Equip
                   </button>
-                  <button className="btn-inv btn-gray">Destroy</button>
+                  <button className="btn-inv btn-gray" name={item._id} onClick={this.onDestroyClick}>Destroy</button>
                 </div>
               </div>
               <div id="item-info" style={{ paddingLeft: "10px" }}>
@@ -120,17 +131,25 @@ class Inventory extends Component {
 
     return (
       <section id="inventory">
-        <div id="inventory-header">Inventory</div>
+        <div id="inventory-header">Inventory {(character.inventory?character.inventory.length:"-") +"/"+ (character.character?character.character.inventorySpace:"-")}</div>
         <div id="inventory-list">{inventoryItems}</div>
       </section>
     );
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.character !== prevState.character){
+      this.setState({ character: this.props.character });
+    }
+  }
+
 }
 
 Inventory.propTypes = {
   auth: PropTypes.object.isRequired,
   getInventory: PropTypes.func.isRequired,
-  equipItem: PropTypes.func.isRequired
+  equipItem: PropTypes.func.isRequired,
+  destroyItem: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -140,5 +159,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getInventory, equipItem }
+  { getInventory, equipItem, destroyItem }
 )(Inventory);

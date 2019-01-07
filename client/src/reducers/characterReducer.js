@@ -41,12 +41,14 @@ export default function(state = initialState, action) {
     case GET_CHARACTER:
       return{
         ...state,
-        character: action.payload
+        character: action.payload,
+        loading: false
       }
     case GET_EQUIPMENT:
       return{
         ...state,
-        equipment: action.payload
+        equipment: action.payload,
+        loading: false
       }
     default:
       return state;

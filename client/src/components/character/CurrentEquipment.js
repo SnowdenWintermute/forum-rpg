@@ -3,52 +3,32 @@ import EmptySlot from "../../img/equipment/empty.png";
 import {connect} from "react-redux"
 import PropTypes from "prop-types"
 
-import {getEquipment, getCharacter} from "../../actions/characterActions"
+import {getEquipment, getCharacter, unequipItem} from "../../actions/characterActions"
 
 class CurrentEquipment extends Component {
+  constructor(props){
+    super(props)
+    this.state={
+      character: null
+    }
+  }
   componentDidMount(){
     this.props.getEquipment()
     this.props.getCharacter()
+    this.setState({character: this.props.character})
   }
+
+  onUnequipClick = (e) => {
+    console.log(e.target.getAttribute('name'))
+    this.props.unequipItem(e.target.getAttribute('name'))
+  }
+
   render() {
-    let {equipment} = this.props.character
+    let equipment = this.state.character ? this.state.character.equipment ? this.state.character.equipment : null:null
 
     let eqPics = {
-      empty: EmptySlot,
-      shoulders: require('../../img/equipment/shoulders.png'),
-      head: require('../../img/equipment/head.png'),
-      neck: require('../../img/equipment/neck.png'),
-      arms: require('../../img/equipment/arms.png'),
-      body: require('../../img/equipment/body.png'),
-      hands: require('../../img/equipment/hands.png'),
-      ring: require('../../img/equipment/ring.png'),
-      legs: require('../../img/equipment/legs.png'),
-      feet: require('../../img/equipment/feet.png'),
-      oneHandSword: require('../../img/equipment/oneHandSword.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
-      feet: require('../../img/equipment/feet.png'),
+      empty: EmptySlot
     }
-
-
-
-    // let getEquipmentImage = (slot) => {
-    //   if(equipment){
-    //     if(equipment[slot]){
-    //       console.log(equipment)
-    //       console.log(`../../img/equipment/${equipment[slot].img}.png`)
-    //       return `../../img/equipment/${equipment[slot].img}.png`
-    //     }
-    //   }
-    //   return EmptySlot
-    // }
-    // let shouldersImg = getEquipmentImage("shoulders")
 
     return (
       <section id="current-equipment">
@@ -57,62 +37,146 @@ class CurrentEquipment extends Component {
           <div id="eq-grid">
             <div id="eq-shoulders" className="eq-grid-item">
               <div className="eq-slot-label">Shoulders</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.shoulders  ? equipment.shoulders.img: "empty": "empty"]} />
+              <div className = "eq-img-holder">
+                {equipment ? equipment.shoulders ? 
+                <div className="unequip-hover" name="shoulders" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.shoulders?`/img/equipment/${equipment.shoulders.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>
             </div>
             <div id="eq-head" className="eq-grid-item">
               <div className="eq-slot-label">Head</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.head ? equipment.head.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.head ? 
+                <div className="unequip-hover" name="head" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.head?`/img/equipment/${equipment.head.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-neck" className="eq-grid-item">
               <div className="eq-slot-label">Neck</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.neck ? equipment.neck.img: "empty" : "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.neck ? 
+                <div className="unequip-hover" name="neck" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.neck?`/img/equipment/${equipment.neck.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-arms" className="eq-grid-item">
               <div className="eq-slot-label">Arms</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.arms ? equipment.arms.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.arms ? 
+                <div className="unequip-hover" name="arms" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.arms?`/img/equipment/${equipment.arms.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-body" className="eq-grid-item">
               <div className="eq-slot-label">Body</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.body ? equipment.body.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.body ? 
+                <div className="unequip-hover" name="body" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.body?`/img/equipment/${equipment.body.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-hands" className="eq-grid-item">
               <div className="eq-slot-label">Hands</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.hands ? equipment.hands.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.hands ? 
+                <div className="unequip-hover" name="hands" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.hands?`/img/equipment/${equipment.hands.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-ring1" className="eq-grid-item">
               <div className="eq-slot-label">Ring</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.ringRight ? equipment.ringRight.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.ringRight ? 
+                <div className="unequip-hover" name="ringRight" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.ringRight?`/img/equipment/${equipment.ringRight.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-legs" className="eq-grid-item">
               <div className="eq-slot-label">Legs</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.legs ? equipment.legs.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.legs ? 
+                <div className="unequip-hover" name="legs" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.legs?`/img/equipment/${equipment.legs.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-ring2" className="eq-grid-item">
               <div className="eq-slot-label">Ring</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.ringLeft ? equipment.ringLeft.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.ringLeft ? 
+                <div className="unequip-hover" name="ringLeft" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.ringLeft?`/img/equipment/${equipment.ringLeft.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-right-hand" className="eq-grid-item">
               <div className="eq-slot-label">Right</div>
-              <img alt="eq" src={EmptySlot} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.handRight ? 
+                <div className="unequip-hover" name="handRight" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.handRight?`/img/equipment/${equipment.handRight.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-feet" className="eq-grid-item">
               <div className="eq-slot-label">Feet</div>
-              <img alt="eq" src={eqPics[equipment ? equipment.feet ? equipment.feet.img: "empty": "empty"]} />
-            </div>
+              <div className = "eq-img-holder">
+                {equipment ? equipment.feet ? 
+                <div className="unequip-hover" name="feet" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.feet?`/img/equipment/${equipment.feet.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>            </div>
             <div id="eq-left-hand" className="eq-grid-item">
               <div className="eq-slot-label">Left</div>
-              <img alt="eq" src={EmptySlot} />
+              <div className = "eq-img-holder">
+                {equipment ? equipment.handLeft ? 
+                <div className="unequip-hover" name="handLeft" onClick={this.onUnequipClick}>
+                  X
+                </div>
+                 : null : null}
+                <img alt="eq" src={equipment? equipment.handLeft?`/img/equipment/${equipment.handLeft.img}.png`:eqPics.empty:eqPics.empty} />
+              </div>
             </div>
           </div>
         </div>
       </section>
     );
   }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.character !== prevState.character){
+      this.setState({ character: this.props.character });
+    }
+  }
+
 }
+
+
 
 CurrentEquipment.propTypes = {
   auth: PropTypes.object.isRequired,
   getEquipment: PropTypes.func.isRequired,
+  unequipItem: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
@@ -121,4 +185,4 @@ const mapStateToProps = state => ({
   character: state.character
 })
 
-export default connect(mapStateToProps, {getEquipment, getCharacter})(CurrentEquipment);
+export default connect(mapStateToProps, {getEquipment, getCharacter, unequipItem})(CurrentEquipment);

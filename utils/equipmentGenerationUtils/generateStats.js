@@ -51,16 +51,16 @@ module.exports = generateStats = (subType, level, rarity) => {
         ];
         potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense"];
         break;
-      case "1hSword":
-      case "1hClub":
-      case "1hAxe":
+      case "oneHandSword":
+      case "oneHandClub":
+      case "oneHandAxe":
       case "pistol":
         potentialPrefixes = ["magicAccuracy", "accuracy", "bonusDamage", "mp"];
         potentialSuffixes = ["str", "dex", "int", "armorPiercing", "hp"];
         break;
-      case "2hSword":
-      case "2hClub":
-      case "2hAxe":
+      case "twoHandSword":
+      case "twoHandClub":
+      case "twoHandAxe":
       case "polearm":
       case "bow":
       case "crossbow":

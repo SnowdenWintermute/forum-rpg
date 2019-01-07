@@ -126,22 +126,22 @@ module.exports = generateName = (type, subType, stats) => {
 
   // Weapons
   if (type === "hand") {
-    if (subType === "1hSword") {
+    if (subType === "oneHandSword") {
       base = "Sword";
     }
-    if (subType === "2hSword") {
+    if (subType === "twoHandSword") {
       base = "Katana";
     }
-    if (subType === "1hClub") {
+    if (subType === "oneHandClub") {
       base = "Mace";
     }
-    if (subType === "2hClub") {
+    if (subType === "twoHandClub") {
       base = "Staff";
     }
-    if (subType === "1hAxe") {
+    if (subType === "oneHandAxe") {
       base = "Axe";
     }
-    if (subType === "2hAxe") {
+    if (subType === "twoHandAxe") {
       base = "Greataxe";
     }
     if (subType === "polearm") {

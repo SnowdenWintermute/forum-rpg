@@ -6,7 +6,7 @@ import {
   EQUIP_ITEM,
   GET_CHARACTER,
   SET_CHARACTER_LOADING,
-  GET_EQUIPMENT
+  GET_EQUIPMENT,
 } from "./types";
 
 export const getCharacter = () => dispatch => {
@@ -61,18 +61,34 @@ export const getInventory = () => dispatch => {
 };
 
 export const equipItem = itemId => dispatch => {
-  axios.put(`api/characters/equip-item/${itemId}`).then(res => {
+  axios.put(`/api/characters/equip-item/${itemId}`).then(res => {
     dispatch({
       type: EQUIP_ITEM,
       payload: res.data
     })
+    axios.get("/api/characters/equipment")
+    .then(res => {
+      dispatch(setCharacterLoading())
+      dispatch({
+        type: GET_EQUIPMENT,
+        payload: res.data
+      })
     axios.get("/api/characters/inventory").then(res => {
       dispatch(setInventoryLoading());
       dispatch({
         type: GET_INVENTORY,
         payload: res.data
-      })})
-
+      })
+    
+      }).catch(err =>
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        })
+      )
+    
+    })
+      
   }).catch(err =>
     dispatch({
       type: GET_ERRORS,
@@ -80,6 +96,55 @@ export const equipItem = itemId => dispatch => {
     })
   );;
 };
+
+export const unequipItem = slot => dispatch => {
+  axios.put(`/api/characters/unequip/${slot}`)
+    .then(res => {
+      if(res.data.inventoryfull){
+        dispatch({
+          type: GET_ERRORS,
+          payload: res.data
+        })
+      } else {
+      axios.get('/api/characters/equipment').then(res =>{
+      dispatch(setCharacterLoading())
+      dispatch({
+        type: GET_EQUIPMENT,
+        payload: res.data
+      })
+    })
+      axios.get("/api/characters/inventory").then(res => {
+        dispatch(setInventoryLoading());
+        dispatch({
+          type: GET_INVENTORY,
+          payload: res.data
+        })
+        }).catch(err =>
+          dispatch({
+            type: GET_ERRORS,
+            payload: {}
+          })
+        )
+        }
+    })
+}
+
+export const destroyItem = itemId => dispatch => {
+  axios.delete(`/api/characters/destroy-item/${itemId}`).then(res => {
+    axios.get("/api/characters/inventory").then(res => {
+      dispatch(setInventoryLoading())
+      dispatch({
+        type: GET_INVENTORY,
+        payload: res.data
+      })
+    })
+
+  }).catch(err =>
+    dispatch({
+      type: GET_ERRORS,
+      payload: {error:"error destroying item"}
+    }))
+}
 
 export const setInventoryLoading = () => {
   return {

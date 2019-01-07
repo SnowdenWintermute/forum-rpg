@@ -52,6 +52,64 @@ const CharacterSchema = new Schema({
     int: {
       type: Number,
       default: 1
+    },
+    armorClass: {
+      type: Number,
+      default: 0
+    },
+    evasion: {
+      type: Number,
+      default: 0
+    },
+    accuracy: {
+      type: Number,
+      default: 0
+    },
+    magicAccuracy: {
+      type: Number,
+      default: 0
+    },
+    magicDefense: {
+      type: Number,
+      default: 0
+    },
+    armorPiercing: {
+      type: Number,
+      default: 0
+    },
+    resistances: {
+      fire: {
+        type: Number,
+        default: 0
+      },
+      ice: {
+        type: Number,
+        default: 0
+      },
+      lightning: {
+        type: Number,
+        default: 0
+      },
+      water: {
+        type: Number,
+        default: 0
+      },
+      earth: {
+        type: Number,
+        default: 0
+      },
+      wind: {
+        type: Number,
+        default: 0
+      },
+      light: {
+        type: Number,
+        default: 0
+      },
+      dark: {
+        type: Number,
+        default: 0
+      }
     }
   },
   spells: [
@@ -181,6 +239,10 @@ const CharacterSchema = new Schema({
     handRight: { type: Schema.Types.ObjectId, ref: "equipment" },
     handLeft: { type: Schema.Types.ObjectId, ref: "equipment" },
     ammunition: { type: Schema.Types.ObjectId, ref: "equipment" }
+  },
+  inventorySpace: {
+    type: Number,
+    default: 15
   },
   inventory: [
     {
