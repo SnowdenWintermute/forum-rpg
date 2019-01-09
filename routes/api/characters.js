@@ -205,25 +205,34 @@ router.delete("/destroy-item/:itemId", passport.authenticate('jwt', {session: fa
   })
 })
 
-router.put("/update-stats/", (req, res) => {
-  character.findOne({user: req.user.id}).then(character => {
-    let baseStats = {
-      lvl: 0,
-      exp: {
-        current: 0,
-        nextLevel: 0
-      },
+router.put("/update-stats/",passport.authenticate('jwt', {session: false}), (req, res) => {
+  Character.findOne({user: req.user.id})
+  .populate('equipment.shoulders')
+  .populate('equipment.head')
+  .populate('equipment.neck')
+  .populate('equipment.arms')
+  .populate('equipment.body')
+  .populate('equipment.hands')
+  .populate('equipment.ringRight')
+  .populate('equipment.legs')
+  .populate('equipment.ringLeft')
+  .populate('equipment.handRight')
+  .populate('equipment.feet')
+  .populate('equipment.handLeft')
+  .populate('equipment.ammunition')
+  .then(character => {
+    let newStats = {
       hp: {
-        max: 0,
-        current: 0
+        max: character.lvl * 5 + 5,
+        current: character.stats.hp.current
       },
       mp: {
-        max: 0,
-        current: 0
+        max: character.lvl * 3 + 3,
+        current: character.stats.mp.current
       },
-      str: 0,
-      dex: 0,
-      int: 0,
+      str: character.lvl,
+      dex: character.lvl,
+      int: character.lvl,
       armorClass: 0,
       evasion: 0,
       accuracy: 0,
@@ -241,10 +250,44 @@ router.put("/update-stats/", (req, res) => {
         dark: 0
       }
     }
-    for(let item in character.equipment){
 
+    for(let item in character.equipment){
+      if(character.equipment.hasOwnProperty(item)
+        && character.equipment[item]!== undefined ){
+          let currentItem = character.equipment[item]
+          if(currentItem){
+            newStats.hp.max += currentItem.hp ? currentItem.hp : 0
+            newStats.mp.max += currentItem.mp ? currentItem.mp : 0
+            //if removing gear takes h or mp lower than current values
+            if(newStats.hp.max < character.stats.hp.current) newStats.hp.current = newStats.hp.max
+            if(newStats.mp.max < character.stats.mp.current) newStats.mp.current = newStats.mp.max
+
+            newStats.str += currentItem.str ? currentItem.str : 0
+            newStats.dex += currentItem.dex ? currentItem.dex : 0
+            newStats.int += currentItem.int ? currentItem.int : 0
+            newStats.armorClass += currentItem.armorClass ? currentItem.armorClass : 0
+            newStats.accuracy += currentItem.accuracy ? currentItem.accuracy : 0
+            newStats.magicAccuracy += currentItem.magicAccuracy ? currentItem.magicAccuracy : 0
+            newStats.magicDefense += currentItem.magicDefense ? currentItem.magicDefense : 0
+            newStats.armorPiercing += currentItem.armorPiercing ? currentItem.armorPiercing : 0
+            if(currentItem.resistances !== undefined){
+              newStats.resistances.fire += currentItem.resistances.fire ? currentItem.resistances.fire : 0
+              newStats.resistances.ice += currentItem.resistances.ice ? currentItem.resistances.ice : 0
+              newStats.resistances.lightning += currentItem.resistances.lightning ? currentItem.resistances.lightning : 0
+              newStats.resistances.water += currentItem.resistances.water ? currentItem.resistances.water : 0
+              newStats.resistances.earth += currentItem.resistances.earth ? currentItem.resistances.earth : 0
+              newStats.resistances.wind += currentItem.resistances.wind ? currentItem.resistances.wind : 0
+              newStats.resistances.light += currentItem.resistances.light ? currentItem.resistances.light : 0
+              newStats.resistances.dark += currentItem.resistances.dark ? currentItem.resistances.dark : 0
+            }
+            console.log(newStats)
+          }
     }
-  })
+  }
+  character.stats = newStats
+  character.save()
+  res.status(200).json(character)
+})
 })
 
 module.exports = router;

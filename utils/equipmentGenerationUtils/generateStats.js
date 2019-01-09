@@ -12,6 +12,7 @@ module.exports = generateStats = (subType, level, rarity) => {
     accuracy: 0, // [prefix] steady, stable, sighted, guided, unwavering
     magicAccuracy: 0, // [prefix] cryptic, esoteric, magical, mystical, arcane
     magicDefense: 0, // [suffix] of cover, shelter, shielding, dispersal, diffusion
+    evasion: 0, //
     armorPiercing: 0, // [suffix] of piercing, stabbing, penetration, smashing, shattering
     resistances: {
       fire: 0, // [prefix] red, crimson, scarlet, garnet, ruby
@@ -32,7 +33,7 @@ module.exports = generateStats = (subType, level, rarity) => {
     "magicAccuracy",
     "resistances"
   ];
-  const suffixStats = ["hp", "stats", "magicDefense", "armorPiercing"];
+  const suffixStats = ["hp", "stats", "magicDefense", "armorPiercing", "evasion"];
 
   generatePrefixSuffixStats = (subType, level) => {
     // Declare the potential prefix and suffix
@@ -49,7 +50,7 @@ module.exports = generateStats = (subType, level, rarity) => {
           "elementalResistance",
           "magicAccuracy"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense"];
+        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
         break;
       case "oneHandSword":
       case "oneHandClub":
@@ -78,7 +79,8 @@ module.exports = generateStats = (subType, level, rarity) => {
           "int",
           "armorPiercing",
           "hp",
-          "magicDefense"
+          "magicDefense",
+          "evasion"
         ];
         break;
       case "shield":
@@ -88,7 +90,7 @@ module.exports = generateStats = (subType, level, rarity) => {
           "elementalResistance",
           "magicAccuracy"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense"];
+        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
         break;
       case "ring":
       case "neck":
@@ -99,7 +101,7 @@ module.exports = generateStats = (subType, level, rarity) => {
           "magicAccuracy",
           "resistances"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense"];
+        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
         break;
       case "ammunition":
         potentialSuffixes = [""];
@@ -130,6 +132,8 @@ module.exports = generateStats = (subType, level, rarity) => {
       case "magicDefense":
         stats.magicDefense = getRandomInt(1, level * 2);
         break;
+      case "evasion":
+        stats.evasion = getRandomInt(1, level * 2)
       case "armorPiercing":
         stats.armorPiercing = getRandomInt(1, level * 1);
         break;

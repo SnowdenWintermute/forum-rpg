@@ -248,6 +248,20 @@ module.exports = generateName = (type, subType, stats) => {
       suffix = "of Cover";
     }
   }
+  if (stats.evasion > 0) {
+    // evasion [suffix]
+    if (stats.evasion > 16) {
+      suffix = "of Evasion";
+    } else if (stats.magicDefense > 12) {
+      suffix = "of Dodging";
+    } else if (stats.magicDefense > 8) {
+      suffix = "of The Juke-Master";
+    } else if (stats.magicDefense > 4) {
+      suffix = "of The Ghost";
+    } else if (stats.magicDefense > 0) {
+      suffix = "of The One";
+    }
+  }
   if (stats.armorPiercing > 0) {
     // armorPiercing [suffix] of piercing, stabbing, penetration, smashing, shattering
     if (stats.armorPiercing > 8) {

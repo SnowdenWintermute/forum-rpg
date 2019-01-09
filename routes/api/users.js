@@ -88,29 +88,6 @@ router.post("/register", (req, res) => {
       });
     }
   });
-  // User.findOne({ email: req.body.email }).then(user =>
-  //   Wallet.findOne({ user: user.id })
-  //     .then(wallet => {
-  //       if (wallet) {
-  //         return res
-  //           .status(400)
-  //           .json({ walletExists: "User already has a wallet" });
-  //       } else {
-  //         const newWallet = new Wallet({
-  //           user: user.id
-  //         });
-  //         newWallet
-  //           .save()
-  //           .then(res.status(200).json(newWallet))
-  //           .catch(err => res.status(400).json(err));
-  //       }
-  //     })
-  //     .catch(err =>
-  //       res
-  //         .status(401)
-  //         .json({ notauthorized: "You must log in to create a wallet" })
-  //     )
-  // )
 });
 
 // @route   POST api/users/login
@@ -144,7 +121,7 @@ router.post("/login", (req, res) => {
         jwt.sign(
           payload,
           keys.secretOrKey,
-          { expiresIn: 3600 },
+          { expiresIn: 11800 },
           (err, token) => {
             res.json({
               success: true,

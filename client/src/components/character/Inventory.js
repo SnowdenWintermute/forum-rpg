@@ -15,7 +15,7 @@ class Inventory extends Component {
   componentDidMount() {
     this.props.getInventory();
     this.setState({character: this.props.character})
-    console.log(this.state)
+    // console.log(this.state)
   }
 
   onEquipClick = e => {

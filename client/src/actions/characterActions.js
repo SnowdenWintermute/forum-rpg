@@ -7,6 +7,7 @@ import {
   GET_CHARACTER,
   SET_CHARACTER_LOADING,
   GET_EQUIPMENT,
+  UPDATE_STATS
 } from "./types";
 
 export const getCharacter = () => dispatch => {
@@ -79,7 +80,12 @@ export const equipItem = itemId => dispatch => {
         type: GET_INVENTORY,
         payload: res.data
       })
-    
+    axios.put("/api/characters/update-stats").then(res => {
+      dispatch({
+        type: GET_CHARACTER,
+        payload: res.data
+      })
+    }) 
       }).catch(err =>
         dispatch({
           type: GET_ERRORS,
@@ -87,8 +93,7 @@ export const equipItem = itemId => dispatch => {
         })
       )
     
-    })
-      
+    })  
   }).catch(err =>
     dispatch({
       type: GET_ERRORS,
@@ -96,6 +101,20 @@ export const equipItem = itemId => dispatch => {
     })
   );;
 };
+
+export const updateStats = () => dispatch => {
+  axios.put("/api/characters/update-stats").then(res => {
+    dispatch({
+      type: GET_CHARACTER,
+      payload: res.data
+    })
+  }).catch(err => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  })
+}
 
 export const unequipItem = slot => dispatch => {
   axios.put(`/api/characters/unequip/${slot}`)
@@ -110,6 +129,12 @@ export const unequipItem = slot => dispatch => {
       dispatch(setCharacterLoading())
       dispatch({
         type: GET_EQUIPMENT,
+        payload: res.data
+      })
+    })
+    axios.put("/api/characters/update-stats").then(res => {
+      dispatch({
+        type: GET_CHARACTER,
         payload: res.data
       })
     })

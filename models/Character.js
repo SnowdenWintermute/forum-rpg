@@ -6,7 +6,6 @@ const CharacterSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
-  stats: {
     lvl: {
       type: Number,
       default: 1
@@ -21,97 +20,98 @@ const CharacterSchema = new Schema({
         default: 100
       }
     },
-    hp: {
-      max: {
-        type: Number,
-        default: 10
+    stats:{
+      hp: {
+        max: {
+          type: Number,
+          default: 10
+        },
+        current: {
+          type: Number,
+          default: 10
+        }
       },
-      current: {
+      mp: {
+        max: {
+          type: Number,
+          default: 6
+        },
+        current: {
+          type: Number,
+          default: 6
+        }
+      },
+      str: {
         type: Number,
-        default: 10
+        default: 1
+      },
+      dex: {
+        type: Number,
+        default: 1
+      },
+      int: {
+        type: Number,
+        default: 1
+      },
+      armorClass: {
+        type: Number,
+        default: 0
+      },
+      evasion: {
+        type: Number,
+        default: 0
+      },
+      accuracy: {
+        type: Number,
+        default: 0
+      },
+      magicAccuracy: {
+        type: Number,
+        default: 0
+      },
+      magicDefense: {
+        type: Number,
+        default: 0
+      },
+      armorPiercing: {
+        type: Number,
+        default: 0
+      },
+      resistances: {
+        fire: {
+          type: Number,
+          default: 0
+        },
+        ice: {
+          type: Number,
+          default: 0
+        },
+        lightning: {
+          type: Number,
+          default: 0
+        },
+        water: {
+          type: Number,
+          default: 0
+        },
+        earth: {
+          type: Number,
+          default: 0
+        },
+        wind: {
+          type: Number,
+          default: 0
+        },
+        light: {
+          type: Number,
+          default: 0
+        },
+        dark: {
+          type: Number,
+          default: 0
+        }
       }
     },
-    mp: {
-      max: {
-        type: Number,
-        default: 6
-      },
-      current: {
-        type: Number,
-        default: 6
-      }
-    },
-    str: {
-      type: Number,
-      default: 1
-    },
-    dex: {
-      type: Number,
-      default: 1
-    },
-    int: {
-      type: Number,
-      default: 1
-    },
-    armorClass: {
-      type: Number,
-      default: 0
-    },
-    evasion: {
-      type: Number,
-      default: 0
-    },
-    accuracy: {
-      type: Number,
-      default: 0
-    },
-    magicAccuracy: {
-      type: Number,
-      default: 0
-    },
-    magicDefense: {
-      type: Number,
-      default: 0
-    },
-    armorPiercing: {
-      type: Number,
-      default: 0
-    },
-    resistances: {
-      fire: {
-        type: Number,
-        default: 0
-      },
-      ice: {
-        type: Number,
-        default: 0
-      },
-      lightning: {
-        type: Number,
-        default: 0
-      },
-      water: {
-        type: Number,
-        default: 0
-      },
-      earth: {
-        type: Number,
-        default: 0
-      },
-      wind: {
-        type: Number,
-        default: 0
-      },
-      light: {
-        type: Number,
-        default: 0
-      },
-      dark: {
-        type: Number,
-        default: 0
-      }
-    }
-  },
   spells: [
     {
       type: Object,
