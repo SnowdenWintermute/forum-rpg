@@ -33,11 +33,12 @@ class Dashboard extends Component {
                 Character
               </Link>
             </li>
-            {/*<li>
-              <Link to="/forum" className="link link-dark">
-                Account
+            <li>
+              <Link to="/shops" className="link link-dark">
+                Shops
               </Link>
-            </li> */}
+            </li>
+
           </ul>
         </div>
       </div>

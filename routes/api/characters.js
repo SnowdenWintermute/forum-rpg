@@ -230,6 +230,10 @@ router.put("/update-stats/",passport.authenticate('jwt', {session: false}), (req
         max: character.lvl * 3 + 3,
         current: character.stats.mp.current
       },
+      damage: {
+        min:character.lvl,
+        max:character.lvl
+      },
       str: character.lvl,
       dex: character.lvl,
       int: character.lvl,
@@ -262,10 +266,17 @@ router.put("/update-stats/",passport.authenticate('jwt', {session: false}), (req
             if(newStats.hp.max < character.stats.hp.current) newStats.hp.current = newStats.hp.max
             if(newStats.mp.max < character.stats.mp.current) newStats.mp.current = newStats.mp.max
 
+            //damage
+            newStats.damage.min += currentItem.damage ? currentItem.damage.min ? currentItem.damage.min : 0 : 0
+            newStats.damage.max += currentItem.damage ? currentItem.damage.max ? currentItem.damage.max : 0 : 0
+            newStats.damage.min += currentItem.bonusDamage ? currentItem.bonusDamage : 0
+            newStats.damage.max += currentItem.bonusDamage ? currentItem.bonusDamage : 0
+
             newStats.str += currentItem.str ? currentItem.str : 0
             newStats.dex += currentItem.dex ? currentItem.dex : 0
             newStats.int += currentItem.int ? currentItem.int : 0
             newStats.armorClass += currentItem.armorClass ? currentItem.armorClass : 0
+            newStats.evasion += currentItem.evasion ? currentItem.evasion : 0
             newStats.accuracy += currentItem.accuracy ? currentItem.accuracy : 0
             newStats.magicAccuracy += currentItem.magicAccuracy ? currentItem.magicAccuracy : 0
             newStats.magicDefense += currentItem.magicDefense ? currentItem.magicDefense : 0
@@ -280,10 +291,42 @@ router.put("/update-stats/",passport.authenticate('jwt', {session: false}), (req
               newStats.resistances.light += currentItem.resistances.light ? currentItem.resistances.light : 0
               newStats.resistances.dark += currentItem.resistances.dark ? currentItem.resistances.dark : 0
             }
-            console.log(newStats)
+            // console.log(newStats)
           }
     }
   }
+
+  // weapon damage
+  for(let item in character.equipment){
+    if(character.equipment.hasOwnProperty(item)
+        && character.equipment[item]!== undefined ){
+          let currentItem = character.equipment[item]
+          if(currentItem){
+          if(currentItem.subType === "bow" ||
+          currentItem.subType === "crossbow"
+          ){
+            newStats.damage.min += Math.floor(character.stats.dex / 2)
+            newStats.damage.max += Math.floor(character.stats.dex / 2)
+          } else if(currentItem.subType === "pistol" ||
+                    currentItem.subType === "rifle"){
+                    newStats.damage.min += character.stats.dex
+                    newStats.damage.max += character.stats.dex
+          } else if(currentItem.subType === "oneHandSword" ||
+                    currentItem.subType === "oneHandClub" ||
+                    currentItem.subType === "oneHandAxe"){
+                    newStats.damage.min += Math.floor(character.stats.str / 2)
+                    newStats.damage.max += Math.floor(character.stats.str / 2)
+          } else if(currentItem.subType === "twoHandSword" ||
+                    currentItem.subType === "twoHandClub" ||
+                    currentItem.subType === "twoHandAxe" ||
+                    currentItem.subType === "polearm"){
+                    newStats.damage.min += character.stats.str
+                    newStats.damage.max += character.stats.str
+          }
+    }
+  }
+}
+
   character.stats = newStats
   character.save()
   res.status(200).json(character)

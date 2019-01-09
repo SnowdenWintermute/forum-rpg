@@ -9,7 +9,8 @@ class CurrentEquipment extends Component {
   constructor(props){
     super(props)
     this.state={
-      character: null
+      character: null,
+      hoveredEquipment: <div style={{display:"flex", justifyContent:"center", alignItems:"center",height:"100%"}}>Current Equipment</div>
     }
   }
   componentDidMount(){
@@ -19,8 +20,65 @@ class CurrentEquipment extends Component {
   }
 
   onUnequipClick = (e) => {
-    console.log(e.target.getAttribute('name'))
     this.props.unequipItem(e.target.getAttribute('name'))
+    this.setState({hoveredEquipment: <div style={{display:"flex", justifyContent:"center", alignItems:"center",height:"100%"}}>Current Equipment</div>})
+  }
+
+  onMouseEnterEq = e => {
+    let item = this.state.character.equipment[e.target.getAttribute('name')]
+    let itemStats = []
+    {{for (let stat in item) {
+      if (
+        stat !== "preReqs" &&
+        stat !== "_id" &&
+        stat !== "rarity" &&
+        stat !== "owner" &&
+        stat !== "name" &&
+        stat !== "resistances" &&
+        stat !== "damage" &&
+        stat !== "durability" &&
+        stat !== "type" &&
+        stat !== "subType" &&
+        stat !== "handling" &&
+        stat !== "armorClass" &&
+        stat !== "img"
+      ) {
+        if (item[stat]) {
+          itemStats.push({
+            statName: stat.charAt(0).toUpperCase() + stat.slice(1),
+            statValue: item[stat]
+          });
+        }
+      } else if (stat === "resistances") {
+        for (let res in item[stat]) {
+          if (item[stat][res]) {
+            itemStats.push({
+              statName:
+                "Resist " + res.charAt(0).toUpperCase() + res.slice(1),
+              statValue: item[stat][res]
+            });
+          }
+        }
+      }
+    }
+  }}
+    this.setState({
+      hoveredEquipment: 
+        <div style={{fontSize:"1.2rem", marginLeft:"10px"}}>
+          {item.name}
+          <div style={{fontSize:".8rem", height:"100%", display:"flex", flexDirection:"column"}}>
+          <div>
+            {item.armorClass ? "Armor Class: "+item.armorClass : null }
+            {item.damage.min ? "Damage: "+item.damage.min + " - " + item.damage.max : null }
+          </div>
+          <div>
+            {itemStats[0] ? `${itemStats[0].statName}: ${itemStats[0].statValue}` : null}
+          </div>
+          {itemStats[1] ? `${itemStats[1].statName}: ${itemStats[1].statValue}` : null}
+
+          </div>
+        </div>
+    })
   }
 
   render() {
@@ -32,14 +90,14 @@ class CurrentEquipment extends Component {
 
     return (
       <section id="current-equipment">
-        <div id="item-stats">ItemStats</div>
+        <div id="item-stats">{this.state.hoveredEquipment}</div>
         <div id="eq-grid-holder">
           <div id="eq-grid">
             <div id="eq-shoulders" className="eq-grid-item">
               <div className="eq-slot-label">Shoulders</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.shoulders ? 
-                <div className="unequip-hover" name="shoulders" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="shoulders" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -50,7 +108,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Head</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.head ? 
-                <div className="unequip-hover" name="head" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="head" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -60,7 +118,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Neck</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.neck ? 
-                <div className="unequip-hover" name="neck" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="neck" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -70,7 +128,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Arms</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.arms ? 
-                <div className="unequip-hover" name="arms" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="arms" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -80,7 +138,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Body</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.body ? 
-                <div className="unequip-hover" name="body" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="body" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -90,7 +148,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Hands</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.hands ? 
-                <div className="unequip-hover" name="hands" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="hands" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -100,7 +158,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Ring</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.ringRight ? 
-                <div className="unequip-hover" name="ringRight" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="ringRight" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -110,7 +168,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Legs</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.legs ? 
-                <div className="unequip-hover" name="legs" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="legs" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -120,7 +178,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Ring</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.ringLeft ? 
-                <div className="unequip-hover" name="ringLeft" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="ringLeft" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -130,7 +188,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Right</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.handRight ? 
-                <div className="unequip-hover" name="handRight" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="handRight" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -140,7 +198,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Feet</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.feet ? 
-                <div className="unequip-hover" name="feet" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="feet" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}
@@ -150,7 +208,7 @@ class CurrentEquipment extends Component {
               <div className="eq-slot-label">Left</div>
               <div className = "eq-img-holder">
                 {equipment ? equipment.handLeft ? 
-                <div className="unequip-hover" name="handLeft" onClick={this.onUnequipClick}>
+                <div className="unequip-hover" name="handLeft" onClick={this.onUnequipClick} onMouseEnter={this.onMouseEnterEq}>
                   X
                 </div>
                  : null : null}

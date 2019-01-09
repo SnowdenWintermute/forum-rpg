@@ -41,6 +41,16 @@ const CharacterSchema = new Schema({
           default: 6
         }
       },
+      damage:{
+        min: {
+          type: Number,
+          default: 1
+        },
+        max:{
+          type: Number,
+          default: 1
+        }
+      },
       str: {
         type: Number,
         default: 1

@@ -354,9 +354,6 @@ ul {
 #item-stats {
   height: 80px;
   border-bottom: 1px solid #3af;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: #fee; }
 
 #eq-grid {
@@ -411,7 +408,7 @@ ul {
     #inventory {
       border-top: 1px solid #3af; } }
 
-#inventory-header {
+.small-window-header {
   border-bottom: 1px solid #3af;
   height: 80px;
   display: flex;
@@ -440,3 +437,36 @@ ul {
   height: 40px;
   border: none;
   cursor: pointer; }
+
+#equipment-shop {
+  width: 350px;
+  height: 550px;
+  display: block;
+  color: #fee;
+  border-right: 1px solid #3af; }
+  @media (max-width: 1100px) {
+    #equipment-shop {
+      border-right: none; } }
+
+.eq-shop-grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 50px 50px 50px; }
+  .eq-shop-grid .eq-shop-grid-item {
+    border-bottom: 1px solid grey; }
+  .eq-shop-grid .eq-shop-price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem; }
+
+.shop-coin-icon {
+  margin-left: 5px;
+  height: .8rem; }
+
+.btn-fill {
+  height: 100%;
+  width: 100%;
+  font-size: 1rem;
+  border: none;
+  margin: 0; }

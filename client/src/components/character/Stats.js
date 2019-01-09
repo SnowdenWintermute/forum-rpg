@@ -104,7 +104,7 @@ class Stats extends Component {
             </tr>
             <tr>
               <td>Damage:</td>
-              <td className="stats-table-number-column">1 - 2</td>
+              <td className="stats-table-number-column">{character ? character.stats.damage.min:loadingGif}-{character ? character.stats.damage.max:loadingGif}</td>
             </tr>
             <tr>
               <td>Accuracy:</td>

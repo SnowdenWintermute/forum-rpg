@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import { getInventory, equipItem, destroyItem } from "../../actions/characterActions";
+import { getInventory, equipItem, destroyItem, getCharacter } from "../../actions/characterActions";
 import LoadingGif from "../../img/loading.gif";
 
 class Inventory extends Component {
@@ -13,6 +13,7 @@ class Inventory extends Component {
     }
   }
   componentDidMount() {
+    this.props.getCharacter();
     this.props.getInventory();
     this.setState({character: this.props.character})
     // console.log(this.state)
@@ -131,7 +132,7 @@ class Inventory extends Component {
 
     return (
       <section id="inventory">
-        <div id="inventory-header">Inventory {(character.inventory?character.inventory.length:"-") +"/"+ (character.character?character.character.inventorySpace:"-")}</div>
+        <div className="small-window-header">Inventory {(character.inventory?character.inventory.length:"-") +"/"+ (character.character?character.character.inventorySpace:"-")}</div>
         <div id="inventory-list">{inventoryItems}</div>
       </section>
     );
@@ -159,5 +160,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getInventory, equipItem, destroyItem }
+  { getInventory, equipItem, destroyItem, getCharacter }
 )(Inventory);

@@ -105,6 +105,20 @@ class Navbar extends Component {
           >
             Forum
           </Link>
+          <Link
+            to="/character"
+            className={navClasses.navLink}
+            style={{ marginLeft: "20px" }}
+          >
+            Character
+          </Link>
+          <Link
+            to="/shops"
+            className={navClasses.navLink}
+            style={{ marginLeft: "20px" }}
+          >
+            Shops
+          </Link>
         </div>
         <div className="nav-link-group">
           {isAuthenticated ? authLinks : guestLinks}

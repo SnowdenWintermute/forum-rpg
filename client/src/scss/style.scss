@@ -391,9 +391,6 @@ ul {
 #item-stats {
   height: 80px;
   border-bottom: 1px solid map-get($colors, linkDark);
-  display: flex;
-  justify-content: center;
-  align-items: center;
   color: map-get($colors, textDark);
 }
 #eq-grid {
@@ -453,7 +450,7 @@ ul {
     border-top: 1px solid map-get($colors, linkDark);
   }
 }
-#inventory-header {
+.small-window-header {
   border-bottom: 1px solid map-get($colors, linkDark);
   height: 80px;
   display: flex;
@@ -484,4 +481,38 @@ ul {
   border: none;
   cursor: pointer;
 }
-
+#equipment-shop{
+  width: 350px;
+  height: 550px;
+  display: block;
+  color: map-get($colors, textDark);
+  border-right: 1px solid map-get($colors, linkDark);
+  @include less1100{
+    border-right:none;
+  }
+}
+.eq-shop-grid{
+  display: grid;
+  grid-template-columns: 70% 30%;
+  grid-template-rows: 50px 50px 50px;
+  .eq-shop-grid-item{
+    border-bottom: 1px solid grey;
+  }
+  .eq-shop-price{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+  }
+}
+.shop-coin-icon{
+  margin-left:5px;
+  height: .8rem;
+}
+.btn-fill{
+  height:100%;
+  width:100%;
+  font-size: 1rem;
+  border: none;
+  margin: 0;
+}
