@@ -124,7 +124,9 @@ router.post(
           // Create the equipment
           const newEquipmentStats = equipmentGenerator(
             character.stats.lvl,
-            "magic",req.params.itemType, req.params.itemSubType
+            "magic",
+            req.params.itemType,
+            req.params.itemSubType
           );
           const newEquipment = new EquipmentClass({
             owner: req.user,
@@ -172,7 +174,7 @@ router.post(
           });
 
           newEquipment.save();
-          character.inventory.push(newEquipment);
+          character.inventory.push(newEquipment._id);
           character
             .save()
             .then(

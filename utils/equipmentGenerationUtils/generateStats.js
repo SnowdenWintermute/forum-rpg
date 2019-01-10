@@ -33,7 +33,13 @@ module.exports = generateStats = (subType, level, rarity) => {
     "magicAccuracy",
     "resistances"
   ];
-  const suffixStats = ["hp", "stats", "magicDefense", "armorPiercing", "evasion"];
+  const suffixStats = [
+    "hp",
+    "stats",
+    "magicDefense",
+    "armorPiercing",
+    "evasion"
+  ];
 
   generatePrefixSuffixStats = (subType, level) => {
     // Declare the potential prefix and suffix
@@ -50,7 +56,14 @@ module.exports = generateStats = (subType, level, rarity) => {
           "elementalResistance",
           "magicAccuracy"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
+        potentialSuffixes = [
+          "str",
+          "dex",
+          "int",
+          "hp",
+          "magicDefense",
+          "evasion"
+        ];
         break;
       case "oneHandSword":
       case "oneHandClub":
@@ -90,7 +103,14 @@ module.exports = generateStats = (subType, level, rarity) => {
           "elementalResistance",
           "magicAccuracy"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
+        potentialSuffixes = [
+          "str",
+          "dex",
+          "int",
+          "hp",
+          "magicDefense",
+          "evasion"
+        ];
         break;
       case "ring":
       case "neck":
@@ -101,7 +121,14 @@ module.exports = generateStats = (subType, level, rarity) => {
           "magicAccuracy",
           "resistances"
         ];
-        potentialSuffixes = ["str", "dex", "int", "hp", "magicDefense", "evasion"];
+        potentialSuffixes = [
+          "str",
+          "dex",
+          "int",
+          "hp",
+          "magicDefense",
+          "evasion"
+        ];
         break;
       case "ammunition":
         potentialSuffixes = [""];
@@ -115,7 +142,7 @@ module.exports = generateStats = (subType, level, rarity) => {
       potentialSuffixes[getRandomInt(0, potentialSuffixes.length - 1)];
 
     // Determine rolls based on level and eq subType
-    // PREFIX STATS
+    // SUFFIX STATS
     switch (randomSuffix) {
       case "hp":
         stats.hp = getRandomInt(1, level * 2);
@@ -132,14 +159,15 @@ module.exports = generateStats = (subType, level, rarity) => {
       case "magicDefense":
         stats.magicDefense = getRandomInt(1, level * 2);
         break;
-      case "evasion":
-        stats.evasion = getRandomInt(1, level * 2)
       case "armorPiercing":
         stats.armorPiercing = getRandomInt(1, level * 1);
         break;
+      case "evasion":
+        stats.evasion = getRandomInt(1, level * 2);
+        break;
       default:
     }
-    // SUFFIX STATS
+    // PREFIX STATS
     switch (randomPrefix) {
       case "mp":
         stats.mp = getRandomInt(1, level * 2);
@@ -150,11 +178,11 @@ module.exports = generateStats = (subType, level, rarity) => {
       case "bonusArmorClass":
         stats.bonusArmorClass = getRandomInt(1, level * 1);
         break;
-      case "accuracy":
-        stats.accuracy = getRandomInt(1, level * 2);
-        break;
       case "magicAccuracy":
         stats.magicAccuracy = getRandomInt(1, level * 2);
+        break;
+      case "accuracy":
+        stats.accuracy = getRandomInt(1, level * 2);
         break;
       case "elementalResistance":
         const elements = [

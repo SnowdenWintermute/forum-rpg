@@ -9,7 +9,7 @@ const users = require("./routes/api/users");
 const forum = require("./routes/api/forum");
 const wallet = require("./routes/api/wallet");
 const equipment = require("./routes/api/equipment");
-const store = require("./routes/api/store");
+const shop = require("./routes/api/shop");
 const characters = require("./routes/api/characters");
 
 const app = express();
@@ -41,7 +41,7 @@ app.use("/api/users", users);
 app.use("/api/forum", forum);
 app.use("/api/wallet", wallet);
 app.use("/api/equipment", equipment);
-app.use("/api/store", store);
+app.use("/api/shop", shop);
 app.use("/api/characters", characters);
 
 // Serve static assets if in production
