@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { buyEquipment } from "../../actions/shopActions";
+import {clearErrors} from "../../actions/errorActions"
 
 class EquipmentShop extends Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class EquipmentShop extends Component {
   };
 
   onPurchaseClick = e => {
+    this.props.clearErrors()
     let eqtype = e.target.getAttribute("eqtype");
     let subtype = e.target.getAttribute("subtype");
     this.props.buyEquipment(eqtype, subtype);
@@ -34,14 +36,14 @@ class EquipmentShop extends Component {
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
-              50
+              *
               <img src={forumCoin} alt="g" className="shop-coin-icon" />
             </div>
           </div>
           <div className="eq-shop-grid-item">
             <button
               className="btn-fill btn-blue"
-              eqtype="random"
+              eqtype="hand"
               subtype="random"
               onClick={this.onPurchaseClick}
             >
@@ -55,7 +57,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Sword</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="oneHandSword"
+              onClick={this.onPurchaseClick}
+            >Sword</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -64,7 +71,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Club</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="oneHandClub"
+              onClick={this.onPurchaseClick}
+            >Club</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -73,7 +85,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Axe</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="oneHandAxe"
+              onClick={this.onPurchaseClick}
+            >Axe</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -82,70 +99,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Katana</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Staff</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Greataxe</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Polearm</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Bow</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Crossbow</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Rifle</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Pistol</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="pistol"
+              onClick={this.onPurchaseClick}
+            >Pistol</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -154,7 +113,110 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Arrows</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="twoHandSword"
+              onClick={this.onPurchaseClick}
+            >Katana</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="twoHandClub"
+              onClick={this.onPurchaseClick}
+            >Staff</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="twoHandAxe"
+              onClick={this.onPurchaseClick}
+            >Greataxe</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="polearm"
+              onClick={this.onPurchaseClick}
+            >Polearm</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="bow"
+              onClick={this.onPurchaseClick}
+            >Bow</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="crossbow"
+              onClick={this.onPurchaseClick}
+            >Crossbow</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="rifle"
+              onClick={this.onPurchaseClick}
+            >Rifle</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              200
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="ammunition"
+              subtype="arrow"
+              onClick={this.onPurchaseClick}
+            >Arrows</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -163,7 +225,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Bolts</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="ammunition"
+              subtype="bolt"
+              onClick={this.onPurchaseClick}
+            >Bolts</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -172,7 +239,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Bullets</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="ammunition"
+              subtype="bullet"
+              onClick={this.onPurchaseClick}
+            >Bullets</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -188,7 +260,12 @@ class EquipmentShop extends Component {
       activeTabContent = (
         <div className="eq-shop-grid">
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Repair All</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Repair All</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -197,7 +274,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Random Armor</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Random Armor</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -206,16 +288,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Body</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Legs</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Arms</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -224,7 +302,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Arms</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Hands</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -233,7 +316,54 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Hands</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Feet</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              100
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Shoulders</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              150
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Head</button>
+          </div>
+          <div className="eq-shop-grid-item eq-shop-price">
+            <div>
+              150
+              <img src={forumCoin} alt="g" className="shop-coin-icon" />
+            </div>
+          </div>
+          <div className="eq-shop-grid-item">
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Body</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -242,7 +372,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Shoulders</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Legs</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -251,7 +386,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Head</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Ring</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -260,25 +400,12 @@ class EquipmentShop extends Component {
             </div>
           </div>
           <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Feet</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Ring</button>
-          </div>
-          <div className="eq-shop-grid-item eq-shop-price">
-            <div>
-              200
-              <img src={forumCoin} alt="g" className="shop-coin-icon" />
-            </div>
-          </div>
-          <div className="eq-shop-grid-item">
-            <button className="btn-fill btn-blue">Amulet</button>
+             <button
+              className="btn-fill btn-blue"
+              eqtype="hand"
+              subtype="random"
+              onClick={this.onPurchaseClick}
+            >Amulet</button>
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
@@ -329,7 +456,8 @@ class EquipmentShop extends Component {
 
 EquipmentShop.propTypes = {
   auth: PropTypes.object.isRequired,
-  buyEquipment: PropTypes.func.isRequired
+  buyEquipment: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -338,5 +466,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { buyEquipment }
+  { buyEquipment, clearErrors }
 )(EquipmentShop);

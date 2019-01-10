@@ -14,14 +14,19 @@ export const buyEquipment = (type, subType) => dispatch => {
     dispatch({
       type: GET_WALLET,
       payload: res.data.wallet
-    });
+    })
     axios.get(`/api/characters/inventory`).then(res => {
       dispatch({
         type: GET_INVENTORY,
         payload: res.data
       });
     });
-  });
+  }).catch(err => {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  });;
 };
 
 export const setInventoryLoading = () => {

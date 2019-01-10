@@ -465,7 +465,7 @@ module.exports = generateName = (type, subType, stats) => {
   console.log("suffix " + suffix);
   console.log("pre " + prefix);
   console.log("--endofnamer");
-  const name = `${prefix} ${base} ${suffix}`;
+  let name = `${prefix} ${base} ${suffix}`;
   if (type === "ammunition") {
     name = base;
   }

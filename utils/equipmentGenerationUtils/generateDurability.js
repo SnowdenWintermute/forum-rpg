@@ -23,7 +23,7 @@ module.exports = generateDurability = (type, level) => {
       current: getRandomInt(1, 10 + level * 5)
     };
   }
-  if (type === "ammuntition") {
+  if (type === "ammunition") {
     durability = {
       max: 1,
       current: 1

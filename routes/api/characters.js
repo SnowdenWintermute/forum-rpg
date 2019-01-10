@@ -196,6 +196,9 @@ router.delete("/destroy-item/:itemId", passport.authenticate('jwt', {session: fa
       console.log("item destroyed")
       item.remove().then(Character.findOne({user: req.user.id})
         .then(character => {
+          console.log(character.inventory.indexOf(item._id))
+          character.inventory.splice(character.inventory.indexOf(item._id), 1)
+          character.save()
           res.status(200).json(character.inventory)
         }))
     }

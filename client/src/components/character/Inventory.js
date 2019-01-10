@@ -132,7 +132,12 @@ class Inventory extends Component {
 
     return (
       <section id="inventory">
-        <div className="small-window-header">Inventory {(character.inventory?character.inventory.length:"-") +"/"+ (character.character?character.character.inventorySpace:"-")}</div>
+        {/*Errors styled conditionally*/}
+        <div className="small-window-header" style={this.props.errors.inventory?{color:"red"}:{}}>
+
+        {this.props.errors.inventory?this.props.errors.inventory+" ":"Inventory "}
+        {/*InventorySpace*/}
+         {(character.inventory ?character.inventory.length? character.inventory.length:0:"-") +"/"+ (character.character?character.character.inventorySpace:"-")}</div>
         <div id="inventory-list">{inventoryItems}</div>
       </section>
     );
@@ -155,7 +160,8 @@ Inventory.propTypes = {
 
 const mapStateToProps = state => ({
   auth: state.auth,
-  character: state.character
+  character: state.character,
+  errors: state.errors
 });
 
 export default connect(

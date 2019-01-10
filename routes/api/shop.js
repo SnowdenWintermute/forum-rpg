@@ -113,21 +113,69 @@ router.post(
         .json({ notauthorized: "You must log in to purchase equipment" });
     }
 
+    let {itemType} = req.params
+    let {itemSubType} = req.params
+
     // Search user's wallet and check funds
     Wallet.findOne({ user: req.user }).then(wallet => {
       // If sufficient funds, create a random equipment
-      console.log(wallet);
-      if (wallet.balance >= 100) {
-        wallet.balance -= 100;
-        wallet.save();
+      
+      // Calculate price
+      let price
+      if(itemType === "hand"){
+        if(itemSubType ==="random"){
+          price = 50
+        }
+        if(itemSubType ==="twoHandSword" ||
+        itemSubType ==="twoHandClub" ||
+        itemSubType ==="twoHandAxe" ||
+        itemSubType ==="polearm" ||
+        itemSubType ==="bow" ||
+        itemSubType ==="crossbow" ||
+        itemSubType ==="rifle"){
+          price = 200
+        }
+        if(itemSubType === "oneHandSword" ||
+        itemSubType === "oneHandClub" ||
+        itemSubType === "oneHandAxe" ||
+        itemSubType === "pistol" ){
+          price = 100
+        }
+      }
+      if(itemType === "arms" ||
+      itemType === "hands" ||
+      itemType === "feet"){
+        price = 100
+      }
+      if(itemType === "shoulders" ||
+      itemType === "head"){
+        price = 150
+      }
+      if(itemType === "body" ||
+      itemType === "legs" ||
+      itemType === "ring" ||
+      itemType === "neck"){
+        price = 200
+      }
+      if(itemType==="ammunition"){
+        price=50;
+      }
+
+      if (wallet.balance >= price) {
         Character.findOne({ user: req.user }).then(character => {
+          // Check inventory space
+          if(character.inventory.length < character.inventorySpace){
+          // Charge the wallet
+          wallet.balance -= price;
+          wallet.save();
           // Create the equipment
           const newEquipmentStats = equipmentGenerator(
-            character.stats.lvl,
+            character.lvl,
             "magic",
-            req.params.itemType,
-            req.params.itemSubType
+            itemType,
+            itemSubType
           );
+          console.log(newEquipmentStats)
           const newEquipment = new EquipmentClass({
             owner: req.user,
             preReqs: {
@@ -180,11 +228,15 @@ router.post(
             .then(
               res.status(200).json({ character: character, wallet: wallet })
             );
-        });
+        } else {
+          res.status(403).json({inventory: "Inventory Full"})
+        }
+      });
+        
       } else {
         // If not enough money
-        res.status(401).json({
-          notenoughfunds: "You need more money to purchase this item"
+        res.status(403).json({
+          notenoughfunds: "Insufficient funds"
         });
       }
     });
