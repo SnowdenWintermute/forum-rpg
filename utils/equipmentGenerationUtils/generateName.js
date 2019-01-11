@@ -1,7 +1,7 @@
 getRandomInt = require("./getRandomInt");
 
 module.exports = generateName = (type, subType, stats) => {
-  console.log("--namer");
+  // console.log("--namer");
   let suffix, prefix, base;
 
   // BASE NAME
@@ -251,15 +251,15 @@ module.exports = generateName = (type, subType, stats) => {
   if (stats.evasion > 0) {
     // evasion [suffix]
     if (stats.evasion > 16) {
-      suffix = "of Evasion";
-    } else if (stats.magicDefense > 12) {
-      suffix = "of Dodging";
-    } else if (stats.magicDefense > 8) {
-      suffix = "of The Juke-Master";
-    } else if (stats.magicDefense > 4) {
-      suffix = "of The Ghost";
-    } else if (stats.magicDefense > 0) {
       suffix = "of The One";
+    } else if (stats.evasion > 12) {
+      suffix = "of The Ghost";
+    } else if (stats.evasion > 8) {
+      suffix = "of The Juke-Master";
+    } else if (stats.evasion > 4) {
+      suffix = "of Dodging";
+    } else if (stats.evasion > 0) {
+      suffix = "of Evasion";
     }
   }
   if (stats.armorPiercing > 0) {
@@ -462,9 +462,9 @@ module.exports = generateName = (type, subType, stats) => {
     }
   }
 
-  console.log("suffix " + suffix);
-  console.log("pre " + prefix);
-  console.log("--endofnamer");
+  // console.log("suffix " + suffix);
+  // console.log("pre " + prefix);
+  // console.log("--endofnamer");
   let name = `${prefix} ${base} ${suffix}`;
   if (type === "ammunition") {
     name = base;

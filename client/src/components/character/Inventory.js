@@ -39,6 +39,7 @@ class Inventory extends Component {
       );
     } else if (character.inventory) {
       if (character.inventory.length) {
+        // displayed info cards
         inventoryItems = [];
         character.inventory.forEach(item => {
           const maxDamage = item.damage.max ? item.damage.max : null;
@@ -64,6 +65,7 @@ class Inventory extends Component {
               stat !== "img"
             ) {
               if (item[stat]) {
+                console.log(stat)
                 stats.push({
                   statName: stat.charAt(0).toUpperCase() + stat.slice(1),
                   statValue: item[stat]

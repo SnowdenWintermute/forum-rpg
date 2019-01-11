@@ -3,6 +3,8 @@ const router = express.Router();
 const mongoose = require("mongoose");
 const passport = require("passport");
 
+const getRandomInt = require('../../utils/equipmentGenerationUtils/getRandomInt')
+
 // Character model
 const Character = require("../../models/Character");
 // Wallet model
@@ -114,7 +116,7 @@ router.post(
     }
 
     let {itemType} = req.params
-    let {itemSubType} = req.params
+    let {itemSubType} = req.params    
 
     // Search user's wallet and check funds
     Wallet.findOne({ user: req.user }).then(wallet => {
@@ -161,6 +163,15 @@ router.post(
         price=50;
       }
 
+    // make random armor
+    if(itemType === "randomArmor"){
+      let armors = ['shoulders','head','neck','arms','body','hands','feet','legs','ring']
+      itemType = armors[getRandomInt(0, armors.length - 1)]
+      //set price
+      price = 50
+    }
+
+
       if (wallet.balance >= price) {
         Character.findOne({ user: req.user }).then(character => {
           // Check inventory space
@@ -202,12 +213,13 @@ router.post(
               dark: newEquipmentStats.resistances.dark
             },
             name: newEquipmentStats.name,
-            type: newEquipmentStats.type,
+            type: newEquipmentStats.ype,
             subType: newEquipmentStats.subType,
             img: newEquipmentStats.img,
             handling: newEquipmentStats.handling,
             rarity: newEquipmentStats.rarity,
             armorClass: newEquipmentStats.armorClass,
+            evasion: newEquipmentStats.evasion,
             hp: newEquipmentStats.hp,
             mp: newEquipmentStats.mp,
             bonusDamage: newEquipmentStats.bonusDamage,

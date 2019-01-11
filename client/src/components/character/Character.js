@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types'
 
 import Stats from "./Stats";
 import CurrentEquipment from "./CurrentEquipment";
 import Inventory from "./Inventory";
+
+import {clearErrors} from '../../actions/errorActions'
 
 class Character extends Component {
   constructor(props) {
@@ -11,6 +14,10 @@ class Character extends Component {
     this.state = {
       activeStatTab: "stats"
     };
+  }
+
+  componentDidMount=()=>{
+    this.props.clearErrors()
   }
 
   onStatsTabClick = e => {
@@ -31,11 +38,16 @@ class Character extends Component {
   }
 }
 
+Character.propTypes = {
+  auth: PropTypes.object.isRequired,
+  clearErrors: PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  {}
+  {clearErrors}
 )(Character);

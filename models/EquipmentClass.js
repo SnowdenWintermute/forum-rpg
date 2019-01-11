@@ -90,6 +90,10 @@ const EquipmentClassSchema = new Schema({
     type: Number,
     default: 0
   },
+  evasion:{
+    type: Number,
+    default: 0
+  },
   str: {
     type: Number,
     default: 0

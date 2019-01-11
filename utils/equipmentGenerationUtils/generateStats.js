@@ -21,8 +21,8 @@ module.exports = generateStats = (subType, level, rarity) => {
       water: 0, // [prefix] waterproof, airtight, watertight, sealed, hermetic
       earth: 0, // [prefix] yellow, amber, saffron, citrine, topaz
       wind: 0, // [prefix] smooth, sleek, contoured, streamlined, frictionless
+      dark: 0, // [prefix] dim, shadowy, dark, black, void
       light: 0, // [prefix] pure, sublime, hallowed, angelic, holy
-      dark: 0 // [prefix] dim, shadowy, dark, black, void
     }
   };
   const prefixStats = [
@@ -119,7 +119,7 @@ module.exports = generateStats = (subType, level, rarity) => {
           "bonusDamage",
           "accuracy",
           "magicAccuracy",
-          "resistances"
+          "elementalResistance"
         ];
         potentialSuffixes = [
           "str",
@@ -138,8 +138,10 @@ module.exports = generateStats = (subType, level, rarity) => {
     // Roll from list of potential mods
     const randomPrefix =
       potentialPrefixes[getRandomInt(0, potentialPrefixes.length - 1)];
+      console.log("rPrefix: "+randomPrefix)
     const randomSuffix =
       potentialSuffixes[getRandomInt(0, potentialSuffixes.length - 1)];
+      console.log("rSuffix: "+randomSuffix)
 
     // Determine rolls based on level and eq subType
     // SUFFIX STATS
@@ -197,6 +199,7 @@ module.exports = generateStats = (subType, level, rarity) => {
         ];
 
         const randomElement = elements[getRandomInt(0, elements.length - 1)];
+        console.log("rElement: " + randomElement)
 
         switch (randomElement) {
           case "fire":

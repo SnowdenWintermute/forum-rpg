@@ -269,14 +269,14 @@ class EquipmentShop extends Component {
           </div>
           <div className="eq-shop-grid-item eq-shop-price">
             <div>
-              50
+              *
               <img src={forumCoin} alt="g" className="shop-coin-icon" />
             </div>
           </div>
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="randomArmor"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Random Armor</button>
@@ -402,7 +402,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="neck"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Amulet</button>

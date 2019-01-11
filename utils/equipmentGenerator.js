@@ -40,6 +40,7 @@ module.exports = function equipmentGenerator(level, rarity, itemType, itemSubTyp
     durability: durability,
     damage: damage,
     armorClass: armorClass,
+    evasion: stats.evasion,
     hp: stats.hp,
     mp: stats.mp,
     bonusDamage: stats.bonusDamage,
@@ -63,6 +64,6 @@ module.exports = function equipmentGenerator(level, rarity, itemType, itemSubTyp
     }
   };
 
-  console.log(newEquipment);
+  // console.log(newEquipment);
   return newEquipment;
 };
