@@ -290,7 +290,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="arms"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Arms</button>
@@ -304,7 +304,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="hands"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Hands</button>
@@ -318,7 +318,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="feet"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Feet</button>
@@ -332,7 +332,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="shoulders"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Shoulders</button>
@@ -346,7 +346,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="head"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Head</button>
@@ -360,7 +360,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="body"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Body</button>
@@ -374,7 +374,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="legs"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Legs</button>
@@ -388,7 +388,7 @@ class EquipmentShop extends Component {
           <div className="eq-shop-grid-item">
              <button
               className="btn-fill btn-blue"
-              eqtype="hand"
+              eqtype="ring"
               subtype="random"
               onClick={this.onPurchaseClick}
             >Ring</button>

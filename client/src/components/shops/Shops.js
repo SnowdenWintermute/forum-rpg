@@ -25,7 +25,10 @@ class Shops extends Component {
   render() {
     return (
       <div className="page-body body-dark" id="character-page">
-        <h3 className="header-text-dark">Equipment Shop</h3>        
+        <h3 className="header-text-dark">{this.props.errors.notenoughfunds?
+        <div style={{color:"red"}}>
+          {this.props.errors.notenoughfunds}
+        </div>:"Equipment Shop"}</h3>        
         <div id="character-windows-holder">
           <EquipmentShop />
           <Inventory />

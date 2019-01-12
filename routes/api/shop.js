@@ -213,7 +213,7 @@ router.post(
               dark: newEquipmentStats.resistances.dark
             },
             name: newEquipmentStats.name,
-            type: newEquipmentStats.ype,
+            type: newEquipmentStats.type,
             subType: newEquipmentStats.subType,
             img: newEquipmentStats.img,
             handling: newEquipmentStats.handling,

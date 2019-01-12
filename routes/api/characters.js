@@ -99,10 +99,15 @@ router.put(
       // Check ownership of item matches current user
       if (equipment.owner.toString() === req.user.id.toString()) {
         console.log("(characters.js line 67) item ownership confirmed");
-        Character.findOne({ user: req.user.id }).populate('equipment.handRight').then(character => {
-          if(equipment.type !== "hand" && equipment.type !== "ring"){ // Take care of all slots excepting hands and rings
+        Character.findOne({ user: req.user.id }).then(character => {
+          console.log("eq type: ")
+          console.log(equipment.type)
+          // Take care of all slots excepting hands and rings
+          if(equipment.type !== "hand" && equipment.type !== "ring"){
           // If slot was occupied, take item out into inventory
-          if(character.equipment[equipment.type]) character.inventory.push(character.equipment[equipment.type])
+          if(character.equipment[equipment.type]){
+            character.inventory.push(character.equipment[equipment.type])
+          } 
           character.equipment[equipment.type] = equipment;
 
           // If no ring on 1st finger, put ring, else put on 2nd finger, else replace 1st ring with new ring
@@ -113,18 +118,18 @@ router.put(
             if(equipment.type === "hand"){
             // If equipping a 2h item, remove each hand's items if they exist, then equip to right hand
             if(equipment.handling === "2h"){
-              if(character.equipment["handRight"]){
-                 character.inventory.push(character.equipment["handRight"])
+              if(character.equipment.handRight){
+                 character.inventory.push(character.equipment.handRight)
               }
-              if(character.equipment["handLeft"]){
-                character.inventory.push(character.equipment["handLeft"])
+              if(character.equipment.handLeft){
+                character.inventory.push(character.equipment.handLeft)
                 character.equipment.handLeft = null
               }
-              character.equipment["handRight"] = equipment 
+              character.equipment.handRight = equipment 
             }
             // If right hand is empty, put it there
-            else if(!character.equipment["handRight"]){
-              character.equipment["handRight"] = equipment
+            else if(!character.equipment.handRight){
+              character.equipment.handRight = equipment
             }
             
             // if already holding 2h, swap right hands
@@ -159,7 +164,9 @@ router.put(
           // Remove item from inventory array
           character.inventory.splice(character.inventory.indexOf(equipment.id),1)
           console.log("item equipped");
-          character.save().then(res.status(200).json(character))
+          console.log(character)
+          character.save()
+          res.status(200).json(character)
         });
       } else {
         res
@@ -170,6 +177,8 @@ router.put(
   }
 );
 
+
+// UNEQUIP ITEM
 router.put("/unequip/:slot", passport.authenticate('jwt', {session: false}), (req, res) => {
     if (!req.user) {
       res.status(401).json({ notloggedin: "You must log in to equip items" });
@@ -208,6 +217,7 @@ router.delete("/destroy-item/:itemId", passport.authenticate('jwt', {session: fa
   })
 })
 
+// UPDATE STATS
 router.put("/update-stats/",passport.authenticate('jwt', {session: false}), (req, res) => {
   Character.findOne({user: req.user.id})
   .populate('equipment.shoulders')

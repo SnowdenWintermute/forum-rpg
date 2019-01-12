@@ -236,7 +236,7 @@ const CharacterSchema = new Schema({
     }
   ],
   equipment: {
-    head: { type: Schema.Types.ObjectId, ref: "equipment" },
+    head: { type: Schema.Types.ObjectId, ref: "equipment"},
     body: { type: Schema.Types.ObjectId, ref: "equipment" },
     legs: { type: Schema.Types.ObjectId, ref: "equipment" },
     feet: { type: Schema.Types.ObjectId, ref: "equipment" },
