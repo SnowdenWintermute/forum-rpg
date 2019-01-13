@@ -210,6 +210,13 @@ ul {
     background: map-get($colors, buttonAltDarkHover);
   }
 }
+.btn-yellow {
+  background: #ffe500;
+  color: map-get($colors, textLight);
+  &:hover {
+    background: #ffee56;
+  }
+}
 .btn-gray {
   background: #999;
   color: map-get($colors, buttonTextDark);
