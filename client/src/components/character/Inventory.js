@@ -156,10 +156,7 @@ class Inventory extends Component {
           inventoryItems.push(
             <div key={item._id} className="inventory-item">
               <div>
-                <img
-                  src={require(`../../img/equipment/${item.img}.png`)}
-                  alt="item"
-                />
+                <img src={`./img/equipment/${item.img}.png`} alt="item" />
 
                 {itemButtons}
               </div>
