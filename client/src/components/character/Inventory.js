@@ -132,7 +132,8 @@ class Inventory extends Component {
               stat !== "subType" &&
               stat !== "handling" &&
               stat !== "armorClass" &&
-              stat !== "img"
+              stat !== "img" &&
+              stat !== "sellPrice"
             ) {
               if (item[stat]) {
                 stats.push({
