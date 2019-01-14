@@ -101,7 +101,7 @@ router.put(
       if (equipment.owner.toString() === req.user.id.toString()) {
         console.log("(characters.js line 67) item ownership confirmed");
         Character.findOne({ user: req.user.id })
-          .populate("equipment.handRight")
+          .populate("equipment.handRight") // must populate to read handling of handRight for equipping 1h when wearing 2h
           .then(character => {
             // Take care of all slots excepting hands and rings
             if (equipment.type !== "hand" && equipment.type !== "ring") {
