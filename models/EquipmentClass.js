@@ -30,6 +30,10 @@ const EquipmentClassSchema = new Schema({
     type: String,
     default: ""
   },
+  sellPrice: {
+    type: Number,
+    default: 10
+  },
   preReqs: {
     lvl: {
       type: Number,
@@ -90,7 +94,7 @@ const EquipmentClassSchema = new Schema({
     type: Number,
     default: 0
   },
-  evasion:{
+  evasion: {
     type: Number,
     default: 0
   },

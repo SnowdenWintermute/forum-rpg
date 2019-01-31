@@ -184,6 +184,12 @@ ul {
   .btn-green:hover {
     background: #5c6; }
 
+.btn-yellow {
+  background: #ffe500;
+  color: #333; }
+  .btn-yellow:hover {
+    background: #ffee56; }
+
 .btn-gray {
   background: #999;
   color: white; }

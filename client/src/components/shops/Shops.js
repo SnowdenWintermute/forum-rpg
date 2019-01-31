@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import Inventory from "../character/Inventory";
 import EquipmentShop from "./EquipmentShop";
-import {clearErrors} from "../../actions/errorActions"
+import { clearErrors } from "../../actions/errorActions";
 
 class Shops extends Component {
   constructor(props) {
@@ -15,8 +15,8 @@ class Shops extends Component {
   }
 
   componentDidMount = () => {
-    this.props.clearErrors()
-  }
+    this.props.clearErrors();
+  };
 
   onStatsTabClick = e => {
     this.setState({ activeStatTab: e.target.name });
@@ -25,13 +25,18 @@ class Shops extends Component {
   render() {
     return (
       <div className="page-body body-dark" id="character-page">
-        <h3 className="header-text-dark">{this.props.errors.notenoughfunds?
-        <div style={{color:"red"}}>
-          {this.props.errors.notenoughfunds}
-        </div>:"Equipment Shop"}</h3>        
+        <h3 className="header-text-dark">
+          {this.props.errors.notenoughfunds ? (
+            <div style={{ color: "red" }}>
+              {this.props.errors.notenoughfunds}
+            </div>
+          ) : (
+            "Equipment Shop"
+          )}
+        </h3>
         <div id="character-windows-holder">
           <EquipmentShop />
-          <Inventory />
+          <Inventory parentModule="shops" />
         </div>
       </div>
     );
@@ -45,5 +50,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  {clearErrors}
+  { clearErrors }
 )(Shops);

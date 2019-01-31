@@ -28,6 +28,12 @@ export default class Landing extends Component {
             <li className="text-dark">
               • Earn coins for posting and replying to threads
             </li>
+            <li className="text-dark">
+              • Spend coins at the shop to get equipment for your character
+            </li>
+            <li className="text-dark">
+              • Equip your character to get better stats
+            </li>
           </ul>
           <h2
             className="text-dark"
