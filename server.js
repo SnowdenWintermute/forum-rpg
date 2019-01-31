@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const socketIO = require("socket.io");
 
 const path = require("path"); // part of node js, needed for production
 
@@ -11,6 +12,8 @@ const wallet = require("./routes/api/wallet");
 const equipment = require("./routes/api/equipment");
 const shop = require("./routes/api/shop");
 const characters = require("./routes/api/characters");
+
+const SocketManager = require("./routes/sockets/SocketManager");
 
 const app = express();
 
@@ -57,4 +60,8 @@ if (process.env.NODE_ENV === "production") {
 //the process.env is for heroku
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
+let server = app.listen(port, () => console.log(`Listening on port ${port}`));
+
+let io = (module.exports.io = socketIO(server));
+
+io.on("connection", SocketManager);
